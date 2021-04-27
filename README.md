@@ -8,7 +8,7 @@
 
 # Vanuatu Market Survey[RAP]&nbsp;
 
-## Develop by David & Julio(linda)
+## Develop by David & Julio
 
 The Port Vila Central Market Survey summarises selected agricultural produces sold at the main wet market based on the
 Supply and Price of commodities. Data is collected on a fortnightly basis and published as a quarterly average.
