@@ -22,7 +22,7 @@ The volume of all commodities increased in this quarter compared to the previous
 the increase of market vendors after the completion of the central market renovations around the end of July 2020.
 The value of commodities increased from VT110,900 to VT548,070 compared to previous quarter.
 An average of 195 sellers were recorded for the quarter under review. This is 154 sellers higher compared to the
-previous quarter. 
+previous quarter. 🪕:
 
 To know more about the Vanautu National Statistics Office. Click [Here](https://vnso.gov.vu)
 
