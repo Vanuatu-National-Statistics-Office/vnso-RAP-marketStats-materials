@@ -22,7 +22,7 @@ To know more about Market Survey Statistics in Vanuatu. Click [Here](https://vns
     * Blog on RAP [here](https://dataingovernment.blog.gov.uk/2017/03/27/reproducible-analytical-pipeline/)
     * Video of Reproducible analysis using R [here](https://www.youtube.com/watch?v=qvPDE4ppAns) 
 
-- [Introduction to Market Survey Statistics](https:https://vnso.gov.vu/index.php/en/census-and-surveys/surveys/market-survey)
+- [Introduction to Market Survey...... Statistics](https:https://vnso.gov.vu/index.php/en/census-and-surveys/surveys/market-survey)
     * Free international merchandise trade Course [here](https://www.unsdglearn.org/courses/e-learning-on-international-merchandise-trade-statistics/) 
     * United Nations Trade Statistics [here](https://unstats.un.org/unsd/trade/default.asp)
     * Video by the World Trade Organisation using R [here](https://www.youtube.com/watch?v=kHQJkeOxAKM) 
