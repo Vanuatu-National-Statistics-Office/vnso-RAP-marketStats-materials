@@ -23,7 +23,9 @@ To know more about Market Survey Statistics in Vanuatu. Click [Here](https://vns
     * Video of Reproducible analysis using R [here](https://www.youtube.com/watch?v=qvPDE4ppAns) 
 
 - [Introduction to Market Survey  Statistics](https://vnso.gov.vu/index.php/en/census-and-surveys/surveys/market-survey)
-    * Free international merchandise trade Course [here](https://www.unsdglearn.org/courses/e-learning-on-international-merchandise-trade-statistics/) 
+    * Free Market survey documents for Samoa [here](https://www.sbs.gov.ws/images/sbs-documents/Economics/local-market-survey/2020/Local_Market_May_2020.pdf) 
+    * Tonga Market Survey Document
+[here](http://www.fao.org/3/an419e/an419e.pdf)
     * United Nations Trade Statistics [here](https://unstats.un.org/unsd/trade/default.asp)
     * Video by the World Trade Organisation using R [here](https://www.youtube.com/watch?v=kHQJkeOxAKM) 
 
