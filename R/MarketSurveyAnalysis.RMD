@@ -1,0 +1,46 @@
+---
+title: "Market_Survey_Analysis"
+author: "Rara"
+date: "03/08/2021"
+output: word_document
+---
+
+
+```{r Load Libraries, warning=FALSE, eval=FALSE}
+
+library(dplyr) # Manipulating data
+library(openxlsx) # Reading and editing excel formatted files
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Market Survey Report Analysis
+
+The Port Vila Central Market Survey summarises selected agricultural produces sold at the main wet market based on the Supply and Price of commodities. Data is collected on a fortnightly basis and published as a quarterly average.
+
+## M1-Form Data Processing and Analysis
+
+```{r M1 Survey Processing, eval=FALSE}
+
+repository <- file.path(dirname(rstudioapi::getSourceEditorContext()$path), "..", "..")
+setwd(repository) # Required for file.choose() function
+
+getwd()
+
+# Load the general R functions
+source(file.path(repository, "functions.R"))
+
+# Note the secure data path
+secureDataFolder <- file.path(repository, "data", "secure")
+
+# Note the open data path
+openDataFolder <- file.path(repository, "data", "open")
+
+
+
+
+
+```
