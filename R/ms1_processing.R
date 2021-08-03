@@ -31,7 +31,7 @@ ms1_staple <- merge(ms1_master_extract, staple_roster, by = "id")
 
 #Processing of Market Survey MS2 Collection
 
-#Load MS1 Files Data Processing
+#Load MS2 Files Data Processing
 
 ms2_master <- read.delim("data/secure/ms2/VNSOMCS.tab")
 ms2_staple_roster <- read.delim("data/secure/ms2/root_crop_roster.tab")

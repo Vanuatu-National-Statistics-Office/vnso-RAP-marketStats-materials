@@ -28,5 +28,3 @@ To know more about Market Survey Statistics in Vanuatu. Click [Here](https://vns
 [here](http://www.fao.org/3/an419e/an419e.pdf)
     * United Nations Trade Statistics [here](https://unstats.un.org/unsd/trade/default.asp)
     * Video by the World Trade Organisation using R [here](https://www.youtube.com/watch?v=kHQJkeOxAKM) 
-
-![The new Reproducible Analytical Pipeline](images/NewPipeline.png)
