@@ -1,0 +1,8 @@
+root_crop_ID	Measure
+1	Basket
+2	Net
+3	Bundle
+4	Each
+5	Heap/Pile
+6	B/Type Bunch
+7	B/Type Ring/Tier
