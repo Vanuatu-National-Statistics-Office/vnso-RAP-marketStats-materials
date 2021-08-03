@@ -1,0 +1,6 @@
+Fruits	Measure
+1	Basket
+2	Net
+5	S/Type/Bunch
+6	S/Type/Ring/Tier
+7	Each
