@@ -13,27 +13,29 @@ setwd(paste0(getwd()))
 getwd()
 
 #Establish connection the the SQLite database
-mydb <- dbConnect(RSQLite::SQLite(), "data/secure/sqlite/msurvey.sqlite")
+mydb <- dbConnect(RSQLite::SQLite(), "data/secure/ms2/sqlite/ms2.sqlite")
 
 #### Processing of Market Survey MS2 Collection ####
-#Load MS2 Files Data Processing - reading Data Tabs from Tablet
+#Load MS2 Files Data Processing - reading Data Tabs from MS2 v2_1 (ver. 2)
 
-#Loading master ms2
+#Loading master ms2 - MS2 v2_1 (ver. 2)
 ms2_master <- read.delim("data/secure/ms2/VNSOMCS.tab")
 ms2_staple_roster <- read.delim("data/secure/ms2/root_crop_roster.tab")
 ms2_vegetable_roster <- read.delim("data/secure/ms2/vegis_roster.tab")
 ms2_fruit_roster <- read.delim("data/secure/ms2/fruits_roster.tab")
+ms2_staple_measurement <- read.delim("data/secure/ms2/measurement_rootcrop.tab")
 
-#Load Lookup Tables from ms2Classification.xlsx file
+#Load Look up Tables from MS2_v2_1_Classification.xlsx (directory: data/open)
 #Re-classify items and measures
-ms2_fruittype <- read_excel("data/open/ms2classification.xlsx", sheet = "fruittype")
-ms2_fruitmeasure <- read_excel("data/open/ms2classification.xlsx", sheet = "fruitmeasure")
-ms2_stapletype <- read_excel("data/open/ms2classification.xlsx", sheet = "stapletype")
-ms2_stapletypemeasure <- read_excel("data/open/ms2classification.xlsx", sheet = "staplemeasure")
-ms2_vegetabletype <- read_excel("data/open/ms2classification.xlsx", sheet = "vegtype")
-ms2_vegetablemeasure <- read_excel("data/open/ms2classification.xlsx", sheet = "vegmeasure")
+#Data is read from a single spreadsheet that has multiples sheets
+ms2_fruittype <- read_excel("data/open/MS2_v2_1_Classification.xlsx", sheet = "fruit")
+ms2_fruitmeasure <- read_excel("data/open/MS2_v2_1_Classification.xlsx", sheet = "fruitsmeasure")
+ms2_stapletype <- read_excel("data/open/MS2_v2_1_Classification.xlsx", sheet = "rootcrop")
+ms2_stapletypemeasure <- read_excel("data/open/MS2_v2_1_Classification.xlsx", sheet = "rootcropmeasure")
+ms2_vegetabletype <- read_excel("data/open/MS2_v2_1_Classification.xlsx", sheet = "vegetabletype")
+ms2_vegetablemeasure <- read_excel("data/open/MS2_v2_1_Classification.xlsx", sheet = "vegetablemeasure")
 
-#Writing new classified tables to the database
+# Writing in new classified tables read from excel file - MS2_v2_1_Classification.xlsx above to the database
 dbWriteTable(mydb, "ms2_fruittype", ms2_fruittype, overwrite=TRUE)
 dbWriteTable(mydb, "ms2_fruitmeasure", ms2_fruitmeasure, overwrite=TRUE)
 dbWriteTable(mydb, "ms2_stapletype", ms2_stapletype, overwrite=TRUE)
@@ -41,56 +43,52 @@ dbWriteTable(mydb, "ms2_stapletypemeasure", ms2_stapletypemeasure, overwrite=TRU
 dbWriteTable(mydb, "ms2_vegetabletype", ms2_vegetabletype, overwrite=TRUE)
 dbWriteTable(mydb, "ms2_vegetablemeasure", ms2_vegetablemeasure, overwrite=TRUE)
 
-
-#Cleaning master
-ms2_master$id <- ms2_master$ï..interview__key #Renaming field=ï..interview__key in table ms2_master to id
+# Cleaning master 
+# 1. Renaming Field = Ã¯..interview__key in data frame= ms2_master to  id
+# 2. Create new Data frame(ms2_master_extract) and assigning selected fields from data frame(ms2_master) to it
+# 3. Write ms2_master_extract data frame into the ms2.sqlite database
+ms2_master$id <- ms2_master$Ã¯..interview__key
 ms2_master_extract <- ms2_master[ , c("id","week","year","market","survey_date")]
-
 dbWriteTable(mydb, "ms2_master", ms2_master_extract, overwrite=TRUE)
 
-#ms2 Staple Food (root crop) 
-ms2_staple_roster$id <- ms2_staple_roster$ï..interview__key # renaming ï..interview__key to id in ms2_staple_roster
-ms2_staple_roster_final <- ms2_staple_roster %>% select (-ï..interview__key) # assigning to new table and dropping ï..interview__key
+#  Cleaning Staple Food (root crop)
+# 1. Renaming Ã¯..interview__key to id in ms2_staple_roster data frame
+# 2. Assigning to new table (ms2_staple_roster_final) and dropping Ã¯..interview__key
+# 3. Add new table (ms2_staple) to database
+# 4. Add root crop measurements (ms2_staple_measurement) to database
+ms2_staple_roster$id <- ms2_staple_roster$Ã¯..interview__key 
+ms2_staple_roster_final <- ms2_staple_roster %>% select (-Ã¯..interview__key)
 dbWriteTable(mydb, "ms2_staple", ms2_staple_roster_final, overwrite=TRUE) 
 
+ms2_staple_measurement$id <- ms2_staple_measurement$Ã¯..interview__key
+ms2_staple_measurement_final <- ms2_staple_measurement %>% select(-Ã¯..interview__key)
+dbWriteTable(mydb, "ms2_staple_measurement", ms2_staple_measurement_final, overwrite=TRUE)
 
-
-ms2_fruit_roster$id <- ms2_fruit_roster$ï..interview__key
-ms2_fruit_roster_final <- ms2_fruit_roster %>% select (-ï..interview__key)
+#  Cleaning Fruit
+ms2_fruit_roster$id <- ms2_fruit_roster$Ã¯..interview__key
+ms2_fruit_roster_final <- ms2_fruit_roster %>% select (-Ã¯..interview__key)
 dbWriteTable(mydb, "ms2_fruit", ms2_fruit_roster_final, overwrite=TRUE)
 
-
-ms2_vegetable_roster$id <- ms2_vegetable_roster$ï..interview__key
-ms2_vegetable_roster_final <- ms2_vegetable_roster %>% select (- ï..interview__key)
+#  Cleaning Vegetable
+ms2_vegetable_roster$id <- ms2_vegetable_roster$Ã¯..interview__key
+ms2_vegetable_roster_final <- ms2_vegetable_roster %>% select (- Ã¯..interview__key)
 dbWriteTable(mydb, "ms2_vegetable", ms2_vegetable_roster_final, overwrite=TRUE)
 
-#Extract MS2 Staple records from the SQLite database
+# Extract MS2 Staple records from the SQLite database
 
 ms2_staple_collection <- dbGetQuery(mydb, "SELECT ms2_master.id,
                                                   ms2_master.week,
                                                   ms2_master.year,
                                                   ms2_master.market,
-                                                  marketLocation.locationdescription,
                                                   ms2_master.survey_date,
                                                   ms2_staple.root_crop_roster__id,
-                                                  ms2_stapletype.stapleFoodDescription,
-                                                  ms2_staple.measure_type,
-                                                  ms2_stapletypemeasure.stapleFoodMeasureDescription,
-                                                  ms2_staple.staple_wieght1,
-                                                  ms2_staple.staple_price1,
-                                                  ms2_staple.staple_wieght2,
-                                                  ms2_staple.staple_price2,
-                                                  ms2_staple.staple_wieght3,
-                                                  ms2_staple.staple_price3,
-                                                  ms2_staple.staple_wieght4,
-                                                  ms2_staple.staple_price4,
-                                                  ms2_staple.staple_wieght5,
-                                                  ms2_staple.staple_price5
+                                                  ms2_stapletype.rootcrop_desc,
+                                                  ms2_stapletypemeasure.rootcropmeasure_desc
+                                                  
                                             FROM ms2_master
-                                            INNER JOIN ms2_staple ON ms2_master.id = ms2_staple.id 
-                                            INNER JOIN marketLocation ON ms2_master.market = marketLocation.market_location
-                                            INNER JOIN ms2_stapletypemeasure ON ms2_staple.measure_type = ms2_stapletypemeasure.stapleFoodMeasure
-                                            INNER JOIN ms2_stapletype ON ms2_staple.root_crop_roster__id = ms2_stapletype.stapleFood
+                                            INNER JOIN ms2_staple ON ms2_master.id = ms2_staple.id
+                                            INNER JOIN ms2_stapletype ON ms2_staple.root_crop_roster__id = ms2_stapletype.rootcrop
+                                            INNER JOIN ms2_stapletypemeasure ON ms2_staple
                                     ")
 
 dbWriteTable(mydb, "ms2_staple_collection", ms2_staple_collection, overwrite = TRUE)
