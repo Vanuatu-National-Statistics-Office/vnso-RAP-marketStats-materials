@@ -198,7 +198,22 @@ write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", ro
 
 #### Calculations - MS2 ####
 
-##
+##  Volume Data
+
+
+
+#numSeller <- dbGetQuery(mydb, "SELECT ms2_staple_collection.id as ID, 
+ #                                     ms2_staple_collection.root_crop_roster__id as RootCropID,
+  #                                  ms2_staple_collection.rootcrop_desc as Root_Crop
+   #                                   
+    #                    FROM ms2_staple_collection
+     #                   
+      #                  GROUP BY ms2_staple_collection.id
+       #                 
+        #                ")
+
+# Sum Vendors
+
 
 
 dbDisconnect(mydb)
