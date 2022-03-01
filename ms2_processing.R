@@ -185,7 +185,7 @@ ms2_fruits_collection <- dbGetQuery(mydb, "SELECT ms2_master.id,
 dbWriteTable(mydb, "ms2_fruits_collection", ms2_fruits_collection, overwrite = TRUE)
 
 
-#Extract all ms2 collection tables from SQLite
+#Extract all ms2 collection tables f0rom SQLite
 ms2_staple_food_collection <- dbGetQuery(mydb, "SELECT * FROM ms2_staple_collection")
 ms2_vegetable_food_collection <- dbGetQuery(mydb, "SELECT * FROM ms2_vegetable_collection")
 ms2_fruit_food_collection <- dbGetQuery(mydb, "SELECT * FROM ms2_fruits_collection")
