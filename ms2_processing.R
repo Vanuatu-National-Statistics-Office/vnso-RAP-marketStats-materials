@@ -15,6 +15,11 @@ getwd()
 #Establish connection the the SQLite database
 mydb <- dbConnect(RSQLite::SQLite(), "data/secure/ms2/sqlite/ms2.sqlite")
 
+
+#### Processing of Market Survey MS1 Collection ####
+
+
+
 #### Processing of Market Survey MS2 Collection ####
 #Load MS2 Files Data Processing - reading Data Tabs from MS2 v2_1 (ver. 2)
 
@@ -196,24 +201,22 @@ write.csv(ms2_staple_collection, "data/secure/ms2/ms2_staple_collection.csv", ro
 write.csv(ms2_vegetable_collection, "data/secure/ms2/ms2_vegetable_collection.csv", row.names = FALSE)
 write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", row.names = FALSE)
 
+
+
+
+
 #### Calculations - MS2 ####
 
-##  Volume Data
+#sumFiji_Taro <- ms2_staple_collection %>% group_by(rootcrop_desc) %>% count(id)
+
+Fiji_Taro_Weights <- ms2_staple_collection %>%
+  dplyr::filter(rootcrop_desc == "Fiji Taro") %>%
+  dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
+  dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
+  dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
 
 
-
-#numSeller <- dbGetQuery(mydb, "SELECT ms2_staple_collection.id as ID, 
- #                                     ms2_staple_collection.root_crop_roster__id as RootCropID,
-  #                                  ms2_staple_collection.rootcrop_desc as Root_Crop
-   #                                   
-    #                    FROM ms2_staple_collection
-     #                   
-      #                  GROUP BY ms2_staple_collection.id
-       #                 
-        #                ")
-
-# Sum Vendors
-
+  
 
 
 dbDisconnect(mydb)
