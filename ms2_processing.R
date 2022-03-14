@@ -207,14 +207,24 @@ write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", ro
 
 #### Calculations - MS2 ####
 
+### Staple Foods ####
 #sumFiji_Taro <- ms2_staple_collection %>% group_by(rootcrop_desc) %>% count(id)
 
-Fiji_Taro_Weights <- ms2_staple_collection %>%
+## Fiji Taro ##
+Fiji_Taro_Avg <- ms2_staple_collection %>%
   dplyr::filter(rootcrop_desc == "Fiji Taro") %>%
   dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
   dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
-  dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
+  dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))%>%
+  dplyr::mutate(total_value =(staple_price1+staple_price2+staple_price3+staple_price4+staple_price5))
 
+  
+## Island Taro ##
+Island_Taro_Avg <- ms2_staple_collection %>%
+  dplyr::filter(rootcrop_desc == "Island Taro") %>%
+  dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
+  dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
+  dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
 
   
 
