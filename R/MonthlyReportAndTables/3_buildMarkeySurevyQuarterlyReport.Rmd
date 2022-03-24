@@ -19,3 +19,27 @@ library(ggplot2) # Creating plots
 set_flextable_defaults(font.family="Times New Roman", font.size=5, font.color="black",
                        text.align="left", table.layout="fixed", theme_fun="theme_booktabs")
 ```
+
+## M1-Form Data Processing and Analysis
+
+```{r M1 Survey Processing, eval=FALSE}
+
+repository <- file.path(dirname(rstudioapi::getSourceEditorContext()$path), "..", "..")
+setwd(repository) # Required for file.choose() function
+
+getwd()
+
+# Load the general R functions
+source(file.path(repository, "functions.R"))
+
+# Note the secure data path
+secureDataFolder <- file.path(repository, "data", "secure")
+
+# Note the open data path
+openDataFolder <- file.path(repository, "data", "open")
+
+
+
+
+
+```
