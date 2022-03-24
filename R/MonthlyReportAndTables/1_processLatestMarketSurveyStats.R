@@ -84,18 +84,20 @@ ms2_fruit_roster_final <- ms2_fruit_roster
 dbWriteTable(mydb, "ms2_fruit", ms2_fruit_roster_final, overwrite=TRUE)
 
 #ms2_measurement_fruits$id <- ms2_measurement_fruits$ï..interview__key
-
-ms2_measurement_fruits_final <- ms2_measurement_fruits %>% select(-ï..interview__key)
+colnames(ms2_measurement_fruits)[1] <- "id"
+ms2_measurement_fruits_final <- ms2_measurement_fruits 
 dbWriteTable(mydb, "ms2_measurement_fruits", ms2_measurement_fruits_final, overwrite=TRUE)
 
 
 #  Cleaning Vegetable
-ms2_vegetable_roster$id <- ms2_vegetable_roster$ï..interview__key
-ms2_vegetable_roster_final <- ms2_vegetable_roster %>% select (- ï..interview__key)
+#ms2_vegetable_roster$id <- ms2_vegetable_roster$ï..interview__key
+colnames(ms2_vegetable_roster)[1] <- "id"
+ms2_vegetable_roster_final <- ms2_vegetable_roster 
 dbWriteTable(mydb, "ms2_vegetable", ms2_vegetable_roster_final, overwrite=TRUE)
 
-ms2_measurement_vegetable$id <- ms2_measurement_vegetable$ï..interview__key
-ms2_measurement_vegetable_final <- ms2_measurement_vegetable %>% select(-ï..interview__key)
+#ms2_measurement_vegetable$id <- ms2_measurement_vegetable$ï..interview__key
+colnames(ms2_measurement_vegetable)[1] <- "id"
+ms2_measurement_vegetable_final <- ms2_measurement_vegetable
 dbWriteTable(mydb, "ms2_measurement_vegetable", ms2_measurement_vegetable_final, overwrite=TRUE)
 
 # Extract MS2 Staple records from the SQLite database
@@ -205,22 +207,67 @@ write.csv(ms2_vegetable_collection, "data/secure/ms2/ms2_vegetable_collection.cs
 write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", row.names = FALSE)
 
 
-
-
-
 #### Calculations - MS2 ####
 
 #sumFiji_Taro <- ms2_staple_collection %>% group_by(rootcrop_desc) %>% count(id)
-
-Fiji_Taro_Weights <- ms2_staple_collection %>%
-  dplyr::filter(rootcrop_desc == "Fiji Taro") %>%
-  dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
-  dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
-  dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
-
+#Fiji_Taro_Weights <- ms2_staple_collection %>%
+  #dplyr::filter(rootcrop_desc == "Fiji Taro") %>%
+  #dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
+  #dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
+  #dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
 
 
+# Find all columns with product weights: (grep() returns the indexes of a given
+# vector - here column names - that contain a given string):
+weight_cols_idx <- grep("weight",names(ms2_fruits_collection))
 
+# Same for prices:
+price_cols_idx <- grep("price",names(ms2_fruits_collection))
 
-dbDisconnect(mydb)
+# Subset the df by these indexes to just get a table of either the weights or
+# prices, and calculate the row-sums using apply():
+total_weight <- apply(ms2_fruits_collection[,weight_cols_idx], 1, sum)
+total_price <- apply(ms2_fruits_collection[,price_cols_idx], 1, sum)
+
+# To get total price per kilo, just divide the resulting vectors, and add this
+# as new col 'price per kilo' to the df.
+ms2_fruits_collection$price_per_kilo <- total_price/total_weight
+
+# You might want to "wrap" the above operations in a function (and put that in
+# an external function you can source) to keep the script tidier.
+
+#melt(ms2_fruits_collection, id.vars = c("fruit_type_desc","measurement_fruits_desc"))
+
+# Get the names of the weight and price cols:
+# weight_cols <- names(ms2_fruits_collection)[weight_cols_idx]
+# price_cols <- names(ms2_fruits_collection)[price_cols_idx]
+
+# Alternatively if you want to aggregate fruits/measurement types across years
+# and markets (where applicable), it's easier to first create a "long" format of
+# the df - so we have single column with prices and weights with fruit type and
+# measurement repeated.
+# We need a unique index per row so we can use the reshape() function:
+ms2_fruits_collection$idx <- row.names(ms2_fruits_collection)
+
+# Then reshape using columsn 9-18 and split this by weight and price:
+ms2_fruits_long <- 
+  reshape(ms2_fruits_collection, 
+          idvar = "idx", 
+          varying = c(9:18), v.names = c("weight", "price"), direction = "long")
+
+# We don't need the idx var any more so remove this to keep things tidy:
+ms2_fruits_long$idx <- NULL
+ms2_fruits_collection$idx <- NULL
+
+# We can now summarise (sum weights and prices) per fruit-measurement type:
+ms2_fruits_totals <- aggregate(cbind(weight, price) ~ 
+                                 fruit_type_desc + 
+                                 measurement_fruits_desc, 
+                               data = ms2_fruits_long, sum)
+ms2_fruits_totals
+
+# Price per kilo in these:
+ms2_fruits_totals$price_per_kilo <- ms2_fruits_totals$price/ms2_fruits_totals$weight
+ms2_fruits_totals
+
 
