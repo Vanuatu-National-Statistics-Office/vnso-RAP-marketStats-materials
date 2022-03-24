@@ -1,6 +1,9 @@
-#Processing of the Market Survey MS2 Collection
+#### Preparation ####
 
-#Load library
+# Clear the environment
+rm(list = ls())
+
+# Load the required libraries
 library(dplyr) #Data manipulation
 library(readxl) #read in Excel files
 library(tibble)
@@ -14,10 +17,6 @@ getwd()
 
 #Establish connection the the SQLite database
 mydb <- dbConnect(RSQLite::SQLite(), "data/secure/ms2/sqlite/ms2.sqlite")
-
-
-#### Processing of Market Survey MS1 Collection ####
-
 
 
 #### Processing of Market Survey MS2 Collection ####
@@ -58,8 +57,9 @@ dbWriteTable(mydb, "ms2_market", ms2_market, overwrite=TRUE)
 # 1. Renaming Field = ï..interview__key in data frame= ms2_master to  id
 # 2. Create new Data frame(ms2_master_extract) and assigning selected fields from data frame(ms2_master) to it
 # 3. Write ms2_master_extract data frame into the ms2.sqlite database
-ms2_master$id <- ms2_master$ï..interview__key
-ms2_master_extract <- ms2_master[ , c("id","week","year","market","survey_date")]
+#ms2_master$id <- ms2_master$ï..interview__key
+colnames(ms2_master)[1] <- "id"
+ms2_master_extract <- ms2_master[ , c("id", "week","year","market","survey_date")]
 dbWriteTable(mydb, "ms2_master", ms2_master_extract, overwrite=TRUE)
 
 #  Cleaning Staple Food (root crop)
@@ -67,31 +67,37 @@ dbWriteTable(mydb, "ms2_master", ms2_master_extract, overwrite=TRUE)
 # 2. Assigning to new table (ms2_staple_roster_final) and dropping ï..interview__key
 # 3. Add new table (ms2_staple) to database
 # 4. Add root crop measurements (ms2_staple_measurement) to database
-ms2_staple_roster$id <- ms2_staple_roster$ï..interview__key 
-ms2_staple_roster_final <- ms2_staple_roster %>% select (-ï..interview__key)
+#ms2_staple_roster$id <- ms2_staple_roster$ï..interview__key 
+colnames(ms2_staple_roster)[1] <- "id"
+ms2_staple_roster_final <- ms2_staple_roster 
 dbWriteTable(mydb, "ms2_staple", ms2_staple_roster_final, overwrite=TRUE) 
 
-ms2_staple_measurement$id <- ms2_staple_measurement$ï..interview__key
-ms2_staple_measurement_final <- ms2_staple_measurement %>% select(-ï..interview__key)
+#ms2_staple_measurement$id <- ms2_staple_measurement$ï..interview__key
+colnames(ms2_staple_measurement)[1] <- "id"
+ms2_staple_measurement_final <- ms2_staple_measurement 
 dbWriteTable(mydb, "ms2_staple_measurement", ms2_staple_measurement_final, overwrite=TRUE)
 
 #  Cleaning Fruits
-ms2_fruit_roster$id <- ms2_fruit_roster$ï..interview__key
-ms2_fruit_roster_final <- ms2_fruit_roster %>% select (-ï..interview__key)
+#ms2_fruit_roster$id <- ms2_fruit_roster$ï..interview__key
+colnames(ms2_fruit_roster)[1] <- "id"
+ms2_fruit_roster_final <- ms2_fruit_roster 
 dbWriteTable(mydb, "ms2_fruit", ms2_fruit_roster_final, overwrite=TRUE)
 
-ms2_measurement_fruits$id <- ms2_measurement_fruits$ï..interview__key
-ms2_measurement_fruits_final <- ms2_measurement_fruits %>% select(-ï..interview__key)
+#ms2_measurement_fruits$id <- ms2_measurement_fruits$ï..interview__key
+colnames(ms2_measurement_fruits)[1] <- "id"
+ms2_measurement_fruits_final <- ms2_measurement_fruits 
 dbWriteTable(mydb, "ms2_measurement_fruits", ms2_measurement_fruits_final, overwrite=TRUE)
 
 
 #  Cleaning Vegetable
-ms2_vegetable_roster$id <- ms2_vegetable_roster$ï..interview__key
-ms2_vegetable_roster_final <- ms2_vegetable_roster %>% select (- ï..interview__key)
+#ms2_vegetable_roster$id <- ms2_vegetable_roster$ï..interview__key
+colnames(ms2_vegetable_roster)[1] <- "id"
+ms2_vegetable_roster_final <- ms2_vegetable_roster 
 dbWriteTable(mydb, "ms2_vegetable", ms2_vegetable_roster_final, overwrite=TRUE)
 
-ms2_measurement_vegetable$id <- ms2_measurement_vegetable$ï..interview__key
-ms2_measurement_vegetable_final <- ms2_measurement_vegetable %>% select(-ï..interview__key)
+#ms2_measurement_vegetable$id <- ms2_measurement_vegetable$ï..interview__key
+colnames(ms2_measurement_vegetable)[1] <- "id"
+ms2_measurement_vegetable_final <- ms2_measurement_vegetable
 dbWriteTable(mydb, "ms2_measurement_vegetable", ms2_measurement_vegetable_final, overwrite=TRUE)
 
 # Extract MS2 Staple records from the SQLite database
@@ -117,7 +123,6 @@ ms2_staple_collection <- dbGetQuery(mydb, "SELECT ms2_master.id,
                                                   ms2_staple_measurement.staple_price4,
                                                   ms2_staple_measurement.staple_wieght5,
                                                   ms2_staple_measurement.staple_price5
-
                                             FROM ms2_master
                                             
                                             INNER JOIN ms2_market ON ms2_master.market = ms2_market.market_id
@@ -202,21 +207,70 @@ write.csv(ms2_vegetable_collection, "data/secure/ms2/ms2_vegetable_collection.cs
 write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", row.names = FALSE)
 
 
-
-
-
 #### Calculations - MS2 ####
 
 #sumFiji_Taro <- ms2_staple_collection %>% group_by(rootcrop_desc) %>% count(id)
-
-Fiji_Taro_Weights <- ms2_staple_collection %>%
-  dplyr::filter(rootcrop_desc == "Fiji Taro") %>%
-  dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
-  dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
-  dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
-
-
-  
+#Fiji_Taro_Weights <- ms2_staple_collection %>%
+  #dplyr::filter(rootcrop_desc == "Fiji Taro") %>%
+  #dplyr::select(id, rootcrop_desc, rootcropmeasure_desc, staple_wieght1, staple_price1, staple_wieght2, staple_price2, staple_wieght3, staple_price3, staple_wieght4, staple_price4, staple_wieght5, staple_price5) %>%
+  #dplyr::mutate(avg_weight = ((staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5)/5)) %>%
+  #dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
 
 
-dbDisconnect(mydb)
+# Note: keep both forms of analysis outlined here by UK for fruits, staple and vegetables
+
+# Find all columns with product weights: (grep() returns the indexes of a given
+# vector - here column names - that contain a given string):
+weight_cols_idx <- grep("weight",names(ms2_fruits_collection))
+
+# Same for prices:
+price_cols_idx <- grep("price",names(ms2_fruits_collection))
+
+# Subset the df by these indexes to just get a table of either the weights or
+# prices, and calculate the row-sums using apply():
+total_weight <- apply(ms2_fruits_collection[,weight_cols_idx], 1, sum)
+total_price <- apply(ms2_fruits_collection[,price_cols_idx], 1, sum)
+
+# To get total price per kilo, just divide the resulting vectors, and add this
+# as new col 'price per kilo' to the df.
+ms2_fruits_collection$price_per_kilo <- total_price/total_weight
+
+# You might want to "wrap" the above operations in a function (and put that in
+# an external function you can source) to keep the script tidier.
+
+#melt(ms2_fruits_collection, id.vars = c("fruit_type_desc","measurement_fruits_desc"))
+
+# Get the names of the weight and price cols:
+# weight_cols <- names(ms2_fruits_collection)[weight_cols_idx]
+# price_cols <- names(ms2_fruits_collection)[price_cols_idx]
+
+# Alternatively if you want to aggregate fruits/measurement types across years
+# and markets (where applicable), it's easier to first create a "long" format of
+# the df - so we have single column with prices and weights with fruit type and
+# measurement repeated.
+# We need a unique index per row so we can use the reshape() function:
+ms2_fruits_collection$idx <- row.names(ms2_fruits_collection)
+
+# Then reshape using columsn 9-18 and split this by weight and price:
+ms2_fruits_long <- 
+  reshape(ms2_fruits_collection, 
+          idvar = "idx", 
+          varying = c(9:18), v.names = c("weight", "price"), direction = "long")
+
+# We don't need the idx var any more so remove this to keep things tidy:
+ms2_fruits_long$idx <- NULL
+ms2_fruits_collection$idx <- NULL
+
+# We can now summarise (sum weights and prices) per fruit-measurement type:
+ms2_fruits_totals <- aggregate(cbind(weight, price) ~ 
+                                 fruit_type_desc + 
+                                 measurement_fruits_desc, 
+                               data = ms2_fruits_long, sum)
+ms2_fruits_totals
+
+# Price per kilo in these:
+ms2_fruits_totals$price_per_kilo <- ms2_fruits_totals$price/ms2_fruits_totals$weight
+ms2_fruits_totals
+
+
+
