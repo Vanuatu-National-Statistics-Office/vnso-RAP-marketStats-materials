@@ -217,6 +217,8 @@ write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", ro
   #dplyr::mutate(avg_price = ((staple_price1+staple_price2+staple_price3+staple_price4+staple_price5)/5))
 
 
+# Note: keep both forms of analysis outlined here by UK for fruits, staple and vegetables
+
 # Find all columns with product weights: (grep() returns the indexes of a given
 # vector - here column names - that contain a given string):
 weight_cols_idx <- grep("weight",names(ms2_fruits_collection))
@@ -269,5 +271,6 @@ ms2_fruits_totals
 # Price per kilo in these:
 ms2_fruits_totals$price_per_kilo <- ms2_fruits_totals$price/ms2_fruits_totals$weight
 ms2_fruits_totals
+
 
 
