@@ -219,6 +219,8 @@ write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", ro
 
 # Note: keep both forms of analysis outlined here by UK for fruits, staple and vegetables
 
+## Fruits ##
+
 # Find all columns with product weights: (grep() returns the indexes of a given
 # vector - here column names - that contain a given string):
 weight_cols_idx <- grep("weight",names(ms2_fruits_collection))
@@ -272,5 +274,60 @@ ms2_fruits_totals
 ms2_fruits_totals$price_per_kilo <- ms2_fruits_totals$price/ms2_fruits_totals$weight
 ms2_fruits_totals
 
+## Vegetables ##
+
+
+# Find all columns with product weights: (grep() returns the indexes of a given
+# vector - here column names - that contain a given string):
+weight_cols_idx <- grep("weight",names(ms2_vegetable_food_collection))
+
+# Same for prices:
+price_cols_idx <- grep("price",names(ms2_vegetable_food_collection))
+
+# Subset the df by these indexes to just get a table of either the weights or
+# prices, and calculate the row-sums using apply():
+total_weight <- apply(ms2_vegetable_food_collection[,weight_cols_idx], 1, sum)
+total_price <- apply(ms2_vegetable_food_collection[,price_cols_idx], 1, sum)
+
+# To get total price per kilo, just divide the resulting vectors, and add this
+# as new col 'price per kilo' to the df.
+ms2_vegetable_food_collection$price_per_kilo <- total_price/total_weight
+
+# You might want to "wrap" the above operations in a function (and put that in
+# an external function you can source) to keep the script tidier.
+
+#melt(ms2_fruits_collection, id.vars = c("fruit_type_desc","measurement_fruits_desc"))
+
+# Get the names of the weight and price cols:
+# weight_cols <- names(ms2_fruits_collection)[weight_cols_idx]
+# price_cols <- names(ms2_fruits_collection)[price_cols_idx]
+
+# Alternatively if you want to aggregate fruits/measurement types across years
+# and markets (where applicable), it's easier to first create a "long" format of
+# the df - so we have single column with prices and weights with fruit type and
+# measurement repeated.
+# We need a unique index per row so we can use the reshape() function:
+ms2_vegetable_food_collection$idx <- row.names(ms2_vegetable_food_collection)
+
+# Then reshape using columsn 9-18 and split this by weight and price:
+ms2_vegtables_food_long <- 
+  reshape(ms2_vegetable_food_collection, 
+          idvar = "idx", 
+          varying = c(9:18), v.names = c("weight", "price"), direction = "long")
+
+# We don't need the idx var any more so remove this to keep things tidy:
+ms2_vegtables_food_long$idx <- NULL
+ms2_vegetable_food_collection$idx <- NULL
+
+# We can now summarise (sum weights and prices) per fruit-measurement type:
+ms2_vegtables_totals <- aggregate(cbind(weight, price) ~ 
+                                 vegetabletype_desc + 
+                                 vegetablemeasure_desc, 
+                               data = ms2_vegtables_food_long, sum)
+ms2_vegtables_totals
+
+# Price per kilo in these:
+ms2_vegtables_totals$price_per_kilo <- ms2_vegtables_totals$price/ms2_vegtables_totals$weight
+ms2_vegtables_totals
 
 
