@@ -1,1 +1,40 @@
-﻿interview__key	interview__id	roster	id1	variable	order	date	time	originator	role	comment
+﻿interview__key	interview__id	roster	id1	id2	variable	order	date	time	originator	role	comment
+10-99-55-30	eae485ed194246f5a8bba37322fd9eb7				@@Completed	1	2021-09-09	22:11:25	ms_int6	1	tomatoe is small
+54-98-35-71	ff2ca8a6a2b84b4c9c0245a70163fb9b				@@Completed	1	2021-09-09	22:14:34	ms_int6	1	tomatoe small type and long beans
+26-74-85-44	1f9aed48555a431ca462110ee0e32274				@@Completed	1	2021-09-09	22:23:51	ms_int6	1	tomatoe is small type
+10-62-69-48	704fe034a66d49d3b676ed59a73466d8				@@Completed	1	2021-09-09	22:27:21	ms_int6	1	tomatoe is small type
+42-01-39-90	c9498aaaa4d842ddbea05343a75ef998				@@Completed	1	2021-09-09	22:33:39	ms_int6	1	dwarf beans
+36-58-15-06	43bf9600f8254ae6bd6101af38900422				@@Completed	1	2021-09-09	22:37:16	ms_int6	1	small type tomatoes
+69-75-97-47	cdabfc827e83447eacb11bffa006e483				@@Completed	1	2021-09-09	22:44:40	ms_int6	1	tomatoe small type and long beans
+82-45-93-59	558bb5ef74f549a494236d6454ff6105				@@Completed	1	2021-09-09	22:46:53	ms_int6	1	tomatoe small type
+45-08-35-06	5efe80fdb4d243c58c744ac7db0dd192				@@Completed	1	2021-09-09	22:54:02	ms_int6	1	small tomatoe
+94-37-61-75	1d2ef97267fd42a088a840afa388dab8				@@Completed	1	2021-09-09	22:58:03	ms_int6	1	small type tomatoe
+37-65-74-98	4df4b16f748941f5bf2fea3bd2b96128				@@Completed	1	2021-09-09	23:02:35	ms_int6	1	small type tomatoe
+33-36-24-50	f9457c37142c4c27a09552e24f957a46	frut_sub_roster	1	3	fruit_quantity	1	2021-10-07	00:13:56	ms_int6	1	Green avanana
+33-36-24-50	f9457c37142c4c27a09552e24f957a46	frut_sub_roster	1	3	fruit_quantity	2	2021-10-07	00:14:25	ms_int6	1	Green Banana
+33-36-24-50	f9457c37142c4c27a09552e24f957a46				@@Completed	3	2021-10-07	00:16:24	ms_int6	1	Two Green Banana Bunch Big type plus 8 Bundle Banana.
+33-36-24-50	f9457c37142c4c27a09552e24f957a46				@@Completed	4	2021-10-07	00:18:42	ms_int6	1	Two Green Banana Bunch Big type plus 8 Bundle Banana.
+93-04-20-92	ffa2f8a1a6954f9fa2bd340460d45530				@@Completed	1	2021-10-07	00:22:43	ms_int6	1	15 Dry Coconut
+93-04-20-92	ffa2f8a1a6954f9fa2bd340460d45530				@@Completed	2	2021-10-07	00:23:35	ms_int6	1	15 Dry Coconut
+55-04-12-41	578ffd9ad6d5453db8a63c95519b9266				@@Completed	1	2021-10-06	22:32:29	ms_int10	1	tomatoes small type
+94-21-13-17	7fcff0f965594c3fb2a40784896952b8				@@Completed	1	2021-10-06	22:37:13	ms_int10	1	tomatoes small type
+73-25-67-35	3d5585d81e514921b30f4b3a1b033b89				@@Completed	1	2021-10-06	22:41:57	ms_int10	1	tomatoes small and dwarf bean
+95-63-33-92	ee2b00a9b8bf4f79b32d6542148e952a				@@Completed	1	2021-10-06	22:47:47	ms_int10	1	tomatoes small type
+99-14-83-05	fc7e5cfa4bea4d3ca10ec01bdbb22bfc				@@Completed	1	2021-10-06	22:52:58	ms_int10	1	tomatoes small
+04-67-83-99	53430cc2ae1f4c26ba00b88a48ffdb78				@@Completed	1	2021-10-06	22:58:55	ms_int10	1	tomatoes small and Tahitian lime
+04-67-83-99	53430cc2ae1f4c26ba00b88a48ffdb78				@@Completed	2	2021-10-06	23:01:27	ms_int10	1	tomatoes small and Tahitian lime
+94-31-85-19	e65d595261b54887b723f5238cff079b				@@Completed	1	2021-10-06	23:05:28	ms_int10	1	dwarf bean
+34-38-53-82	a4a04b03e0274c11a1dfcd46cc1c0924				@@Completed	1	2021-10-06	23:06:57	ms_int10	1	small tomatoe
+28-81-86-52	23b1cd6b7cf74879a48698c0b1fd32d1				@@Completed	1	2021-10-06	23:12:09	ms_int10	1	tomatoes small
+67-14-91-44	6e7f449f90d64796b6448c1bf5c0c00c				@@Completed	1	2021-10-06	23:15:36	ms_int10	1	tomatoes small
+92-45-70-58	a5cb9c8da4194dc68fde4016e3a08bf1				@@Completed	1	2021-10-06	23:21:13	ms_int10	1	tomatoes small
+82-54-14-97	60aa18d9d4514e79a15084ff380d4f26				@@Completed	1	2021-11-03	22:08:24	ms_int11	1	tomatoes is small types
+84-40-93-79	1577116ddbe44f1e97d5c1ec68e6a54c				@@Completed	1	2021-11-03	22:14:31	ms_int6	1	There are 8 banana bunch not ripe.
+84-40-93-79	1577116ddbe44f1e97d5c1ec68e6a54c				@@Completed	2	2021-11-03	22:19:40	ms_int6	1	There are 8 banana bunch not ripe. There are 21 bundle dry coconuts.
+84-40-93-79	1577116ddbe44f1e97d5c1ec68e6a54c				@@Completed	3	2021-11-03	22:20:57	ms_int6	1	There are 8 banana bunch not ripe.
+84-40-93-79	1577116ddbe44f1e97d5c1ec68e6a54c				@@Completed	4	2021-11-03	22:21:49	ms_int6	1	There are 8 banana bunch not ripe.
+84-40-93-79	1577116ddbe44f1e97d5c1ec68e6a54c				@@Completed	5	2021-11-03	22:23:36	ms_int6	1	There are 8 banana bunch not ripe.
+84-40-93-79	1577116ddbe44f1e97d5c1ec68e6a54c				@@Completed	6	2021-11-03	22:24:23	ms_int6	1	There are 8 banana bunch (big type) not ripe.
+89-92-85-62	9434e1982140446284dad3e13518c384				@@Completed	1	2021-11-03	22:36:17	ms_int4	1	sells mostly shopping bags
+67-48-58-29	98b9178aa66b4252998867618f0e7bc1				@@Completed	1	2021-11-03	22:23:24	ms_int6	1	There are 20 bundle dry coconut.
+67-48-58-29	98b9178aa66b4252998867618f0e7bc1				@@Completed	2	2021-11-03	22:23:46	ms_int6	1	There are 20 bundle dry coconut.

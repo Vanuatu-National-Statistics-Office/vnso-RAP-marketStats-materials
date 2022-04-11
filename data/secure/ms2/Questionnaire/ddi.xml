@@ -3,7 +3,7 @@
   <docDscr>
     <citation>
       <titlStmt>
-        <titl>MS2</titl>
+        <titl>MS2 v2_1</titl>
       </titlStmt>
       <prodStmt>
         <copyright>
@@ -17,7 +17,7 @@
   <stdyDscr>
     <citation>
       <titlStmt>
-        <titl>MS2</titl>
+        <titl>MS2 v2_1</titl>
         <IDNO>QUEST</IDNO>
       </titlStmt>
       <prodStmt>
@@ -214,339 +214,291 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V17" name="product_type__0" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:0]]></labl>
+    <var ID="V17" name="root_crop_type__1" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Fiji Taro]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V18" name="product_type__1" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:1]]></labl>
+    <var ID="V18" name="root_crop_type__2" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Island Taro]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V19" name="product_type__2" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:2]]></labl>
+    <var ID="V19" name="root_crop_type__3" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Manioc]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V20" name="product_type__3" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:3]]></labl>
+    <var ID="V20" name="root_crop_type__4" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Sweet Potato (Kumala)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V21" name="product_type__4" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:4]]></labl>
+    <var ID="V21" name="root_crop_type__5" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Yam]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V22" name="product_type__5" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:5]]></labl>
+    <var ID="V22" name="root_crop_type__6" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Banana - green (Big type)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V23" name="product_type__6" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:6]]></labl>
+    <var ID="V23" name="root_crop_type__7" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Banana - green (Small type)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V24" name="product_type__7" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:7]]></labl>
+    <var ID="V24" name="root_crop_type__8" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[root_crop_type:Dry Coconut]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select root crop for sampling]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V25" name="product_type__8" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:8]]></labl>
+    <var ID="V25" name="fruit_type__1" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Banana - ripe (Big type)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V26" name="product_type__9" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:9]]></labl>
+    <var ID="V26" name="fruit_type__2" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Banana - ripe (Small type)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V27" name="product_type__10" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:10]]></labl>
+    <var ID="V27" name="fruit_type__3" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Pawpaw]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V28" name="product_type__11" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:11]]></labl>
+    <var ID="V28" name="fruit_type__4" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Water Melon]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V29" name="product_type__12" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:12]]></labl>
+    <var ID="V29" name="fruit_type__5" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Pineapple]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V30" name="product_type__13" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:13]]></labl>
+    <var ID="V30" name="fruit_type__6" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Lime]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V31" name="product_type__14" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:14]]></labl>
+    <var ID="V31" name="fruit_type__7" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Orange]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V32" name="product_type__15" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:15]]></labl>
+    <var ID="V32" name="fruit_type__8" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Breadfruit]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V33" name="product_type__16" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:16]]></labl>
+    <var ID="V33" name="fruit_type__9" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_type:Green Coconut]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[3. Select fruit from list for sampling.]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V34" name="product_type__17" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:17]]></labl>
+    <var ID="V34" name="vegetable_type__1" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Bowl Cabbage (White)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V35" name="product_type__18" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:18]]></labl>
+    <var ID="V35" name="vegetable_type__2" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Bowl Cabbage (Purple)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V36" name="product_type__19" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[product_type:19]]></labl>
+    <var ID="V36" name="vegetable_type__3" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Carrot]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Root Crop Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V37" name="fruit_type__0" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:0]]></labl>
+    <var ID="V37" name="vegetable_type__4" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Chinese Cabbage]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V38" name="fruit_type__1" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:1]]></labl>
+    <var ID="V38" name="vegetable_type__5" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Cucumber]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V39" name="fruit_type__2" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:2]]></labl>
+    <var ID="V39" name="vegetable_type__6" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Pumpkin]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V40" name="fruit_type__3" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:3]]></labl>
+    <var ID="V40" name="vegetable_type__7" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Island Cabbage]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V41" name="fruit_type__4" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:4]]></labl>
+    <var ID="V41" name="vegetable_type__8" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Lettuce]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V42" name="fruit_type__5" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:5]]></labl>
+    <var ID="V42" name="vegetable_type__9" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Tomato (Big Type)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V43" name="fruit_type__6" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:6]]></labl>
+    <var ID="V43" name="vegetable_type__10" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Tomato (Small Type)]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V44" name="fruit_type__7" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:7]]></labl>
+    <var ID="V44" name="vegetable_type__11" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Potato]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V45" name="fruit_type__8" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:8]]></labl>
+    <var ID="V45" name="vegetable_type__12" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Onion]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V46" name="fruit_type__9" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[fruit_type:9]]></labl>
+    <var ID="V46" name="vegetable_type__13" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Capsicum]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Fruit Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V47" name="vegetable_type__0" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:0]]></labl>
+    <var ID="V47" name="vegetable_type__14" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Bean]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V48" name="vegetable_type__1" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:1]]></labl>
+    <var ID="V48" name="vegetable_type__15" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Chilli]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V49" name="vegetable_type__2" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:2]]></labl>
+    <var ID="V49" name="vegetable_type__16" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Sweet Corn]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V50" name="vegetable_type__3" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:3]]></labl>
+    <var ID="V50" name="vegetable_type__17" files="F1" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[vegetable_type:Broccoli]]></labl>
       <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
+        <qstnLit><![CDATA[4. Select Vegetable from list to sample]]></qstnLit>
       </qstn>
-      <varFormat type="character" schema="other" />
+      <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V51" name="vegetable_type__4" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:4]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
-      </qstn>
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V52" name="vegetable_type__5" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:5]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
-      </qstn>
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V53" name="vegetable_type__6" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:6]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
-      </qstn>
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V54" name="vegetable_type__7" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:7]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
-      </qstn>
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V55" name="vegetable_type__8" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:8]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
-      </qstn>
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V56" name="vegetable_type__9" files="F1" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[vegetable_type:9]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[3. Enter Vegetable Name]]></qstnLit>
-      </qstn>
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V57" name="root_crop_roster__id" files="F2" intrvl="discrete">
+    <var ID="V51" name="root_crop_roster__id" files="F2" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Id in root_crop_roster]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V58" name="interview__key" files="F2" intrvl="discrete">
+    <var ID="V52" name="interview__key" files="F2" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Interview key (identifier in XX-XX-XX-XX format)]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V59" name="root_crop_code" files="F2" intrvl="discrete">
+    <var ID="V53" name="root_crop_code" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
       <labl><![CDATA[root_crop_code]]></labl>
       <qstn>
@@ -566,7 +518,7 @@
       </catgry>
       <catgry>
         <catValu>4</catValu>
-        <labl><![CDATA[Sweet Kumala]]></labl>
+        <labl><![CDATA[Sweet Potato (Kumala)]]></labl>
       </catgry>
       <catgry>
         <catValu>5</catValu>
@@ -580,149 +532,87 @@
         <catValu>7</catValu>
         <labl><![CDATA[Green Banana (Small Type)]]></labl>
       </catgry>
+      <catgry>
+        <catValu>8</catValu>
+        <labl><![CDATA[Dry Coconut]]></labl>
+      </catgry>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V60" name="measure_type" files="F2" intrvl="discrete">
+    <var ID="V54" name="measure_type__1" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[measure_type]]></labl>
+      <labl><![CDATA[measure_type:Basket]]></labl>
       <qstn>
         <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
-      <catgry>
-        <catValu>1</catValu>
-        <labl><![CDATA[Basket]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>2</catValu>
-        <labl><![CDATA[Net]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>3</catValu>
-        <labl><![CDATA[Bundle]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>4</catValu>
-        <labl><![CDATA[Each]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>5</catValu>
-        <labl><![CDATA[Heap/Pile]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>6</catValu>
-        <labl><![CDATA[B/Type Bunch]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>7</catValu>
-        <labl><![CDATA[B/Type Ring/Tier]]></labl>
-      </catgry>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V61" name="staple_price1" files="F2" intrvl="contin">
+    <var ID="V55" name="measure_type__2" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[staple_price1]]></labl>
+      <labl><![CDATA[measure_type:Net]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 1]]></qstnLit>
+        <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V62" name="staple_wieght1" files="F2" intrvl="contin">
+    <var ID="V56" name="measure_type__3" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[staple_wieght1]]></labl>
+      <labl><![CDATA[measure_type:Bundle]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the weight of each %rostertitle% sample 1]]></qstnLit>
+        <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V63" name="staple_price2" files="F2" intrvl="contin">
+    <var ID="V57" name="measure_type__4" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[staple_price2]]></labl>
+      <labl><![CDATA[measure_type:Each]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Price of  %rostertitle% sample 2]]></qstnLit>
+        <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V64" name="staple_wieght2" files="F2" intrvl="contin">
+    <var ID="V58" name="measure_type__5" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[staple_wieght2]]></labl>
+      <labl><![CDATA[measure_type:Heap/Pile]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the weight of %rostertitle% sample 2]]></qstnLit>
+        <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V65" name="staple_price3" files="F2" intrvl="contin">
+    <var ID="V59" name="measure_type__6" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[staple_price3]]></labl>
+      <labl><![CDATA[measure_type:Bunch]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 3]]></qstnLit>
+        <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V66" name="staple_wieght3" files="F2" intrvl="contin">
+    <var ID="V60" name="measure_type__7" files="F2" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[staple_wieght3]]></labl>
+      <labl><![CDATA[measure_type:Ring/Tier]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the weight of %rostertitle% sample 3]]></qstnLit>
+        <qstnLit><![CDATA[Select the %rostertitle% Measurement type]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V67" name="staple_price4" files="F2" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[staple_price4]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Price %rostertitle% sample 4]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V68" name="staple_wieght4" files="F2" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[staple_wieght4]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the weight %rostertitle% sample 4]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V69" name="staple_price5" files="F2" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[staple_price5]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 5]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V70" name="staple_wieght5" files="F2" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[staple_wieght5]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the weight of %rostertitle% sample 5]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V71" name="product_type" files="F2" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[Roster list question]]></labl>
-      <qstn />
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V72" name="interview__id" files="F2" intrvl="discrete">
+    <var ID="V61" name="interview__id" files="F2" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Unique 32-character long identifier of the interview]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V73" name="fruits_roster__id" files="F3" intrvl="discrete">
+    <var ID="V62" name="fruits_roster__id" files="F3" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Id in fruits_roster]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V74" name="interview__key" files="F3" intrvl="discrete">
+    <var ID="V63" name="interview__key" files="F3" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Interview key (identifier in XX-XX-XX-XX format)]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V75" name="fruit_code" files="F3" intrvl="discrete">
+    <var ID="V64" name="fruit_code" files="F3" intrvl="discrete">
       <location RecSegNo="1" />
       <labl><![CDATA[fruit_code]]></labl>
       <qstn>
@@ -730,179 +620,93 @@
       </qstn>
       <catgry>
         <catValu>1</catValu>
-        <labl><![CDATA[Green Banana (Big type)]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>2</catValu>
-        <labl><![CDATA[Green Banana (Small type )]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>3</catValu>
         <labl><![CDATA[Ripe Banana (Big type)]]></labl>
       </catgry>
       <catgry>
-        <catValu>4</catValu>
+        <catValu>2</catValu>
         <labl><![CDATA[Ripe Banana (Small type)]]></labl>
       </catgry>
       <catgry>
-        <catValu>5</catValu>
+        <catValu>3</catValu>
         <labl><![CDATA[Pawpaw]]></labl>
       </catgry>
       <catgry>
-        <catValu>6</catValu>
+        <catValu>4</catValu>
         <labl><![CDATA[Water Melon]]></labl>
       </catgry>
       <catgry>
-        <catValu>7</catValu>
+        <catValu>5</catValu>
         <labl><![CDATA[Pineapple]]></labl>
       </catgry>
       <catgry>
-        <catValu>8</catValu>
+        <catValu>6</catValu>
         <labl><![CDATA[Lime]]></labl>
       </catgry>
       <catgry>
-        <catValu>9</catValu>
+        <catValu>7</catValu>
         <labl><![CDATA[Orange]]></labl>
       </catgry>
       <catgry>
-        <catValu>10</catValu>
+        <catValu>8</catValu>
         <labl><![CDATA[Breadfruit]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>9</catValu>
+        <labl><![CDATA[Green Coconut]]></labl>
       </catgry>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V76" name="F_measure_type" files="F3" intrvl="discrete">
+    <var ID="V65" name="F_measure_type__1" files="F3" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[Fmeasure_type]]></labl>
+      <labl><![CDATA[Fmeasure_type:Net]]></labl>
       <qstn>
         <qstnLit><![CDATA[Select the Measurement Type of these %rostertitle%]]></qstnLit>
       </qstn>
-      <catgry>
-        <catValu>1</catValu>
-        <labl><![CDATA[Basket]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>2</catValu>
-        <labl><![CDATA[Net]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>5</catValu>
-        <labl><![CDATA[S/Type Bunch]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>6</catValu>
-        <labl><![CDATA[S/Type Ring/Tier]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>7</catValu>
-        <labl><![CDATA[Each]]></labl>
-      </catgry>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V77" name="fruit_price1" files="F3" intrvl="contin">
+    <var ID="V66" name="F_measure_type__2" files="F3" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[fruit_price1]]></labl>
+      <labl><![CDATA[Fmeasure_type:Bunch]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 1]]></qstnLit>
+        <qstnLit><![CDATA[Select the Measurement Type of these %rostertitle%]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V78" name="fruit_weight1" files="F3" intrvl="contin">
+    <var ID="V67" name="F_measure_type__3" files="F3" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[fruit_weight1]]></labl>
+      <labl><![CDATA[Fmeasure_type:Ring/Tier]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 1]]></qstnLit>
+        <qstnLit><![CDATA[Select the Measurement Type of these %rostertitle%]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V79" name="fruit_price2" files="F3" intrvl="contin">
+    <var ID="V68" name="F_measure_type__4" files="F3" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[fruit_price2]]></labl>
+      <labl><![CDATA[Fmeasure_type:Each]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 2]]></qstnLit>
+        <qstnLit><![CDATA[Select the Measurement Type of these %rostertitle%]]></qstnLit>
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V80" name="fruit_weight2" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_weight2]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 2]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V81" name="fruit_price3" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_price3]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 3]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V82" name="fruit_weight3" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_weight3]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 3]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V83" name="fruit_price4" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_price4]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 4]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V84" name="fruit_weight4" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_weight4]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 4]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V85" name="fruit_price5" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_price5]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 5]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V86" name="fruit_weight5" files="F3" intrvl="contin">
-      <location RecSegNo="1" />
-      <labl><![CDATA[fruit_weight5]]></labl>
-      <qstn>
-        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 5]]></qstnLit>
-      </qstn>
-      <varFormat type="numeric" schema="other" />
-    </var>
-    <var ID="V87" name="fruit_type" files="F3" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[Roster list question]]></labl>
-      <qstn />
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V88" name="interview__id" files="F3" intrvl="discrete">
+    <var ID="V69" name="interview__id" files="F3" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Unique 32-character long identifier of the interview]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V89" name="vegis_roster__id" files="F4" intrvl="discrete">
+    <var ID="V70" name="vegis_roster__id" files="F4" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Id in vegis_roster]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V90" name="interview__key" files="F4" intrvl="discrete">
+    <var ID="V71" name="interview__key" files="F4" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Interview key (identifier in XX-XX-XX-XX format)]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
-    <var ID="V91" name="vegetable_code" files="F4" intrvl="discrete">
+    <var ID="V72" name="vegetable_code" files="F4" intrvl="discrete">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetable_code]]></labl>
       <qstn>
@@ -918,63 +722,313 @@
       </catgry>
       <catgry>
         <catValu>3</catValu>
-        <labl><![CDATA[Chiness Cabbage]]></labl>
+        <labl><![CDATA[Carrot]]></labl>
       </catgry>
       <catgry>
         <catValu>4</catValu>
-        <labl><![CDATA[Cuccumber]]></labl>
+        <labl><![CDATA[Chinese Cabbage]]></labl>
       </catgry>
       <catgry>
         <catValu>5</catValu>
-        <labl><![CDATA[Pumpkin]]></labl>
+        <labl><![CDATA[Cucumber]]></labl>
       </catgry>
       <catgry>
         <catValu>6</catValu>
-        <labl><![CDATA[Island Cabbage]]></labl>
+        <labl><![CDATA[Pumpkin]]></labl>
       </catgry>
       <catgry>
         <catValu>7</catValu>
-        <labl><![CDATA[Lettuce]]></labl>
+        <labl><![CDATA[Island Cabbage]]></labl>
       </catgry>
       <catgry>
         <catValu>8</catValu>
-        <labl><![CDATA[Tomatoes]]></labl>
+        <labl><![CDATA[Lettuce]]></labl>
       </catgry>
       <catgry>
         <catValu>9</catValu>
-        <labl><![CDATA[Dried Coconut]]></labl>
+        <labl><![CDATA[Tomatoes]]></labl>
       </catgry>
       <catgry>
         <catValu>10</catValu>
-        <labl><![CDATA[Green Coconut]]></labl>
+        <labl><![CDATA[Potato]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>11</catValu>
+        <labl><![CDATA[Onion]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl><![CDATA[Capsicum]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl><![CDATA[Bean]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>14</catValu>
+        <labl><![CDATA[Chilli]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>15</catValu>
+        <labl><![CDATA[Sweet Corn]]></labl>
+      </catgry>
+      <catgry>
+        <catValu>16</catValu>
+        <labl><![CDATA[Broccoli]]></labl>
       </catgry>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V92" name="veg_measure_type" files="F4" intrvl="discrete">
+    <var ID="V73" name="veg_measure_type__2" files="F4" intrvl="discrete">
       <location RecSegNo="1" />
-      <labl><![CDATA[veg_measure_type]]></labl>
+      <labl><![CDATA[veg_measure_type:Net]]></labl>
       <qstn>
-        <qstnLit><![CDATA[Enter the Measurement type of these %rostertitle%]]></qstnLit>
+        <qstnLit><![CDATA[Select the Measurement type of these %rostertitle%]]></qstnLit>
       </qstn>
-      <catgry>
-        <catValu>1</catValu>
-        <labl><![CDATA[Basket]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>2</catValu>
-        <labl><![CDATA[Net]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>3</catValu>
-        <labl><![CDATA[Each]]></labl>
-      </catgry>
-      <catgry>
-        <catValu>4</catValu>
-        <labl><![CDATA[Bundle]]></labl>
-      </catgry>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V93" name="vegetable_price1" files="F4" intrvl="contin">
+    <var ID="V74" name="veg_measure_type__3" files="F4" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[veg_measure_type:Each]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Select the Measurement type of these %rostertitle%]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V75" name="veg_measure_type__4" files="F4" intrvl="discrete">
+      <location RecSegNo="1" />
+      <labl><![CDATA[veg_measure_type:Bundle]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Select the Measurement type of these %rostertitle%]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V76" name="interview__id" files="F4" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Unique 32-character long identifier of the interview]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V77" name="measurement_rootcrop__id" files="F5" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Id in measurement_rootcrop]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V78" name="interview__key" files="F5" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Interview key (identifier in XX-XX-XX-XX format)]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V79" name="staple_price1" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_price1]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 1]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V80" name="staple_wieght1" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_wieght1]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the weight of each %rostertitle% sample 1]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V81" name="staple_price2" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_price2]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of  %rostertitle% sample 2]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V82" name="staple_wieght2" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_wieght2]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the weight of %rostertitle% sample 2]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V83" name="staple_price3" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_price3]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 3]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V84" name="staple_wieght3" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_wieght3]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the weight of %rostertitle% sample 3]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V85" name="staple_price4" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_price4]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price %rostertitle% sample 4]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V86" name="staple_wieght4" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_wieght4]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the weight %rostertitle% sample 4]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V87" name="staple_price5" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_price5]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 5]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V88" name="staple_wieght5" files="F5" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[staple_wieght5]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the weight of %rostertitle% sample 5]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V89" name="interview__id" files="F5" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Unique 32-character long identifier of the interview]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V90" name="root_crop_roster__id" files="F5" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Id in "root_crop_roster"]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V91" name="measurement_fruits__id" files="F6" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Id in measurement_fruits]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V92" name="interview__key" files="F6" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Interview key (identifier in XX-XX-XX-XX format)]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V93" name="fruit_price1" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_price1]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 1]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V94" name="fruit_weight1" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_weight1]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 1]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V95" name="fruit_price2" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_price2]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 2]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V96" name="fruit_weight2" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_weight2]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 2]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V97" name="fruit_price3" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_price3]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 3]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V98" name="fruit_weight3" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_weight3]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 3]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V99" name="fruit_price4" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_price4]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 4]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V100" name="fruit_weight4" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_weight4]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 4]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V101" name="fruit_price5" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_price5]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Price of %rostertitle% sample 5]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V102" name="fruit_weight5" files="F6" intrvl="contin">
+      <location RecSegNo="1" />
+      <labl><![CDATA[fruit_weight5]]></labl>
+      <qstn>
+        <qstnLit><![CDATA[Enter the Weight of %rostertitle% sample 5]]></qstnLit>
+      </qstn>
+      <varFormat type="numeric" schema="other" />
+    </var>
+    <var ID="V103" name="interview__id" files="F6" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Unique 32-character long identifier of the interview]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V104" name="fruits_roster__id" files="F6" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Id in "fruits_roster"]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V105" name="measurement_vegetable__id" files="F7" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Id in measurement_vegetable]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V106" name="interview__key" files="F7" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Interview key (identifier in XX-XX-XX-XX format)]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
+    <var ID="V107" name="vegetable_price1" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetable_price1]]></labl>
       <qstn>
@@ -982,7 +1036,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V94" name="vegetables_weight1" files="F4" intrvl="contin">
+    <var ID="V108" name="vegetables_weight1" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetables_weight1]]></labl>
       <qstn>
@@ -990,7 +1044,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V95" name="vegetable_price2" files="F4" intrvl="contin">
+    <var ID="V109" name="vegetable_price2" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetable_price2]]></labl>
       <qstn>
@@ -998,7 +1052,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V96" name="vegetables_weight2" files="F4" intrvl="contin">
+    <var ID="V110" name="vegetables_weight2" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetables_weight2]]></labl>
       <qstn>
@@ -1006,7 +1060,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V97" name="vegetable_price3" files="F4" intrvl="contin">
+    <var ID="V111" name="vegetable_price3" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetable_price3]]></labl>
       <qstn>
@@ -1014,7 +1068,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V98" name="vegetables_weight3" files="F4" intrvl="contin">
+    <var ID="V112" name="vegetables_weight3" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetables_weight3]]></labl>
       <qstn>
@@ -1022,7 +1076,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V99" name="vegetable_price4" files="F4" intrvl="contin">
+    <var ID="V113" name="vegetable_price4" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetable_price4]]></labl>
       <qstn>
@@ -1030,7 +1084,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V100" name="vegetables_weight4" files="F4" intrvl="contin">
+    <var ID="V114" name="vegetables_weight4" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetables_weight4]]></labl>
       <qstn>
@@ -1038,7 +1092,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V101" name="vegetable_price5" files="F4" intrvl="contin">
+    <var ID="V115" name="vegetable_price5" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetable_price5]]></labl>
       <qstn>
@@ -1046,7 +1100,7 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V102" name="vegetables_weight5" files="F4" intrvl="contin">
+    <var ID="V116" name="vegetables_weight5" files="F7" intrvl="contin">
       <location RecSegNo="1" />
       <labl><![CDATA[vegetables_weight5]]></labl>
       <qstn>
@@ -1054,25 +1108,25 @@
       </qstn>
       <varFormat type="numeric" schema="other" />
     </var>
-    <var ID="V103" name="vegetable_type" files="F4" intrvl="discrete">
-      <location width="255" RecSegNo="1" />
-      <labl><![CDATA[Roster list question]]></labl>
-      <qstn />
-      <varFormat type="character" schema="other" />
-    </var>
-    <var ID="V104" name="interview__id" files="F4" intrvl="discrete">
+    <var ID="V117" name="interview__id" files="F7" intrvl="discrete">
       <location width="255" RecSegNo="1" />
       <labl><![CDATA[Unique 32-character long identifier of the interview]]></labl>
       <qstn />
       <varFormat type="character" schema="other" />
     </var>
+    <var ID="V118" name="vegis_roster__id" files="F7" intrvl="discrete">
+      <location width="255" RecSegNo="1" />
+      <labl><![CDATA[Id in "vegis_roster"]]></labl>
+      <qstn />
+      <varFormat type="character" schema="other" />
+    </var>
   </dataDscr>
-  <fileDscr ID="F1" URI="Temp#33.~esstar?Index=0&amp;Name=VNSOMCS">
+  <fileDscr ID="F1" URI="Temp#33.~esstar?Index=0&amp;Name=VNSOMCS_1">
     <fileTxt>
-      <fileName>VNSOMCS.NSDstat</fileName>
+      <fileName>VNSOMCS_1.NSDstat</fileName>
       <dimensns>
         <caseQnty>0</caseQnty>
-        <varQnty>56</varQnty>
+        <varQnty>50</varQnty>
       </dimensns>
       <fileType>Nesstar 200801</fileType>
     </fileTxt>
@@ -1082,7 +1136,7 @@
       <fileName>root_crop_roster.NSDstat</fileName>
       <dimensns>
         <caseQnty>0</caseQnty>
-        <varQnty>16</varQnty>
+        <varQnty>11</varQnty>
       </dimensns>
       <fileType>Nesstar 200801</fileType>
     </fileTxt>
@@ -1092,7 +1146,7 @@
       <fileName>fruits_roster.NSDstat</fileName>
       <dimensns>
         <caseQnty>0</caseQnty>
-        <varQnty>16</varQnty>
+        <varQnty>8</varQnty>
       </dimensns>
       <fileType>Nesstar 200801</fileType>
     </fileTxt>
@@ -1102,7 +1156,37 @@
       <fileName>vegis_roster.NSDstat</fileName>
       <dimensns>
         <caseQnty>0</caseQnty>
-        <varQnty>16</varQnty>
+        <varQnty>7</varQnty>
+      </dimensns>
+      <fileType>Nesstar 200801</fileType>
+    </fileTxt>
+  </fileDscr>
+  <fileDscr ID="F5" URI="Temp#33.~esstar?Index=4&amp;Name=measurement_rootcrop">
+    <fileTxt>
+      <fileName>measurement_rootcrop.NSDstat</fileName>
+      <dimensns>
+        <caseQnty>0</caseQnty>
+        <varQnty>14</varQnty>
+      </dimensns>
+      <fileType>Nesstar 200801</fileType>
+    </fileTxt>
+  </fileDscr>
+  <fileDscr ID="F6" URI="Temp#33.~esstar?Index=5&amp;Name=measurement_fruits">
+    <fileTxt>
+      <fileName>measurement_fruits.NSDstat</fileName>
+      <dimensns>
+        <caseQnty>0</caseQnty>
+        <varQnty>14</varQnty>
+      </dimensns>
+      <fileType>Nesstar 200801</fileType>
+    </fileTxt>
+  </fileDscr>
+  <fileDscr ID="F7" URI="Temp#33.~esstar?Index=6&amp;Name=measurement_vegetable">
+    <fileTxt>
+      <fileName>measurement_vegetable.NSDstat</fileName>
+      <dimensns>
+        <caseQnty>0</caseQnty>
+        <varQnty>14</varQnty>
       </dimensns>
       <fileType>Nesstar 200801</fileType>
     </fileTxt>

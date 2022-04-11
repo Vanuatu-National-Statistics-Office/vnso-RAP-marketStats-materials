@@ -1,2 +1,4 @@
 ﻿interview__key	interview__id	interview__status	responsible	interviewers	rejections__sup	rejections__hq	entities__errors	questions__comments	interview__duration	n_questions_unanswered
-89-18-88-08	30c8c3ca9eac4a45b8691df84b39cd25	100	ms2_int1	1	0	0	0	0	00.00:58:44	20
+01-62-89-89	51a387b17f594f22913e762fff5f61c1	100	ms_int3	1	1	0	0	0	00.00:37:36	27
+83-79-20-78	87261c7ca5364d66a4362186bcf74705	100	ms_int3	1	0	0	0	0	00.00:51:04	24
+48-26-47-90	95a96c2a85ba4adba67d7abb5c915196	100	ms_int3	1	0	0	0	0	00.00:31:07	24

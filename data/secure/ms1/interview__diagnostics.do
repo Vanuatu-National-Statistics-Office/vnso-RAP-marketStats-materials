@@ -1,3 +1,4 @@
+clear
 insheet using "interview__diagnostics.tab", tab case names
 
 label variable interview__key `"Interview key (identifier in XX-XX-XX-XX format)"'
@@ -12,3 +13,4 @@ label variable rejections__hq `"How many times this interview was rejected by HQ
 label variable entities__errors `"Number of questions and static texts with errors"'
 label variable questions__comments `"Number of questions with comments"'
 label variable interview__duration `"Active time it took to complete the interview, DD.HH:MM:SS"'
+label variable n_questions_unanswered `"Number of unanswered questions"'

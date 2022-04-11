@@ -10,6 +10,7 @@ library(tibble)
 library(tidyverse)
 library(RSQLite) #R SQLite driver package
 library(DBI) #Database driver package
+library(lubridate) #Data manipulation
 
 #Mapping of the directory path
 setwd(paste0(getwd()))
@@ -17,13 +18,13 @@ getwd()
 
 #Establish connection the the SQLite database
 
-mydb <- dbConnect(RSQLite::SQLite(), "data/secure/ms2/sqlite/ms2.sqlite")
+mydb <- dbConnect(RSQLite::SQLite(), "data/secure/sqlite/ms.sqlite")
 
 #### Processing of Market Survey MS2 Collection ####
 #Load MS2 Files Data Processing - reading Data Tabs from MS2 v2_1 (ver. 2)
 
 #Loading master ms2 - MS2 v2_1 (ver. 2)
-ms2_master <- read.delim("data/secure/ms2/VNSOMCS.tab")
+ms2_master <- read.delim("data/secure/ms2/VNSOMCS_1.tab")
 ms2_staple_roster <- read.delim("data/secure/ms2/root_crop_roster.tab")
 ms2_vegetable_roster <- read.delim("data/secure/ms2/vegis_roster.tab")
 ms2_fruit_roster <- read.delim("data/secure/ms2/fruits_roster.tab")
@@ -218,121 +219,6 @@ write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", ro
 
 # Note: keep both forms of analysis outlined here by UK for fruits, staple and vegetables
 
-## Fruits ##
-
-# Find all columns with product weights: (grep() returns the indexes of a given
-# vector - here column names - that contain a given string):
-weight_cols_idx <- grep("weight",names(ms2_fruits_collection))
-
-# Same for prices:
-price_cols_idx <- grep("price",names(ms2_fruits_collection))
-
-# Subset the df by these indexes to just get a table of either the weights or
-# prices, and calculate the row-sums using apply():
-total_weight <- apply(ms2_fruits_collection[,weight_cols_idx], 1, sum)
-total_price <- apply(ms2_fruits_collection[,price_cols_idx], 1, sum)
-
-# To get total price per kilo, just divide the resulting vectors, and add this
-# as new col 'price per kilo' to the df.
-ms2_fruits_collection$price_per_kilo <- total_price/total_weight
-
-# You might want to "wrap" the above operations in a function (and put that in
-# an external function you can source) to keep the script tidier.
-
-#melt(ms2_fruits_collection, id.vars = c("fruit_type_desc","measurement_fruits_desc"))
-
-# Get the names of the weight and price cols:
-# weight_cols <- names(ms2_fruits_collection)[weight_cols_idx]
-# price_cols <- names(ms2_fruits_collection)[price_cols_idx]
-
-# Alternatively if you want to aggregate fruits/measurement types across years
-# and markets (where applicable), it's easier to first create a "long" format of
-# the df - so we have single column with prices and weights with fruit type and
-# measurement repeated.
-# We need a unique index per row so we can use the reshape() function:
-ms2_fruits_collection$idx <- row.names(ms2_fruits_collection)
-
-# Then reshape using columsn 9-18 and split this by weight and price:
-ms2_fruits_long <- 
-  reshape(ms2_fruits_collection, 
-          idvar = "idx", 
-          varying = c(9:18), v.names = c("weight", "price"), direction = "long")
-
-# We don't need the idx var any more so remove this to keep things tidy:
-ms2_fruits_long$idx <- NULL
-ms2_fruits_collection$idx <- NULL
-
-# We can now summarise (sum weights and prices) per fruit-measurement type:
-ms2_fruits_totals <- aggregate(cbind(weight, price) ~ 
-                                 fruit_type_desc + 
-                                 measurement_fruits_desc, 
-                               data = ms2_fruits_long, sum)
-ms2_fruits_totals
-
-# Price per kilo in these:
-ms2_fruits_totals$price_per_kilo <- ms2_fruits_totals$price/ms2_fruits_totals$weight
-ms2_fruits_totals
-
-
-## Vegetables ##
-
-
-# Find all columns with product weights: (grep() returns the indexes of a given
-# vector - here column names - that contain a given string):
-weight_cols_idx <- grep("weight",names(ms2_vegetable_food_collection))
-
-# Same for prices:
-price_cols_idx <- grep("price",names(ms2_vegetable_food_collection))
-
-# Subset the df by these indexes to just get a table of either the weights or
-# prices, and calculate the row-sums using apply():
-total_weight <- apply(ms2_vegetable_food_collection[,weight_cols_idx], 1, sum)
-total_price <- apply(ms2_vegetable_food_collection[,price_cols_idx], 1, sum)
-
-# To get total price per kilo, just divide the resulting vectors, and add this
-# as new col 'price per kilo' to the df.
-ms2_vegetable_food_collection$price_per_kilo <- total_price/total_weight
-
-# You might want to "wrap" the above operations in a function (and put that in
-# an external function you can source) to keep the script tidier.
-
-#melt(ms2_fruits_collection, id.vars = c("fruit_type_desc","measurement_fruits_desc"))
-
-# Get the names of the weight and price cols:
-# weight_cols <- names(ms2_fruits_collection)[weight_cols_idx]
-# price_cols <- names(ms2_fruits_collection)[price_cols_idx]
-
-# Alternatively if you want to aggregate fruits/measurement types across years
-# and markets (where applicable), it's easier to first create a "long" format of
-# the df - so we have single column with prices and weights with fruit type and
-# measurement repeated.
-# We need a unique index per row so we can use the reshape() function:
-ms2_vegetable_food_collection$idx <- row.names(ms2_vegetable_food_collection)
-
-# Then reshape using columsn 9-18 and split this by weight and price:
-ms2_vegtables_food_long <- 
-  reshape(ms2_vegetable_food_collection, 
-          idvar = "idx", 
-          varying = c(9:18), v.names = c("weight", "price"), direction = "long")
-
-# We don't need the idx var any more so remove this to keep things tidy:
-ms2_vegtables_food_long$idx <- NULL
-ms2_vegetable_food_collection$idx <- NULL
-
-# We can now summarise (sum weights and prices) per fruit-measurement type:
-ms2_vegtables_totals <- aggregate(cbind(weight, price) ~ 
-                                 vegetabletype_desc + 
-                                 vegetablemeasure_desc, 
-                               data = ms2_vegtables_food_long, sum)
-ms2_vegtables_totals
-
-# Price per kilo in these:
-ms2_vegtables_totals$price_per_kilo <- ms2_vegtables_totals$price/ms2_vegtables_totals$weight
-ms2_vegtables_totals
-
-
-## Staples ##
-
 # Find all columns with product weights: (grep() returns the indexes of a given
 # vector - here column names - that contain a given string):
 weight_cols_idx <- grep("weight",names(ms2_staple_collection))
@@ -384,5 +270,142 @@ ms2_staple_totals
 # Price per kilo in these:
 ms2_staple_totals$price_per_kilo <- ms2_staple_totals$price/ms2_staple_totals$weight
 ms2_staple_totals
+
+
+# Processing MS1 data
+
+#Loading MS1 types and measure from CAPI
+ms1_master <- read.delim("data/secure/ms1/VNSOMS2019.tab")
+ms1_staple_roster <- read.delim("data/secure/ms1/staple_roster.tab")
+ms1_staple_sub_roster <- read.delim("data/secure/ms1/stap_Nest_Roster.tab")
+ms1_vegetable_roster <- read.delim("data/secure/ms1/vegetable_roster.tab")
+ms1_vegetable_sub_roster <- read.delim("data/secure/ms1/veg_sub_roster.tab")
+ms1_fruit_roster <- read.delim("data/secure/ms1/fruits_roster.tab")
+ms1_fruit_sub_roster <- read.delim("data/secure/ms1/frut_sub_roster.tab")
+
+
+#Load subtables of types and measure from excel file
+ms1_fruittype <- read_excel("data/open/MS1_Classification.xlsx", sheet = "fruit_type")
+ms1_fruitmeasure <- read_excel("data/open/MS1_Classification.xlsx", sheet = "fruit_measure")
+ms1_stapletype <- read_excel("data/open/MS1_Classification.xlsx", sheet = "staple_type")
+ms1_stapletypemeasure <- read_excel("data/open/MS1_Classification.xlsx", sheet = "staple_measure")
+ms1_vegetabletype <- read_excel("data/open/MS1_Classification.xlsx", sheet = "veg_type")
+ms1_vegetablemeasure <- read_excel("data/open/MS1_Classification.xlsx", sheet = "veg_measure")
+ms1_market <- read_excel("data/open/MS1_Classification.xlsx", sheet = "market_location")
+
+
+# Writing in new classified tables read from excel file - MS1_Classification.xlsx above to the database
+dbWriteTable(mydb, "ms1_fruittype", ms1_fruittype, overwrite=TRUE)
+dbWriteTable(mydb, "ms1_fruitmeasure", ms1_fruitmeasure, overwrite=TRUE)
+dbWriteTable(mydb, "ms1_stapletype", ms1_stapletype, overwrite=TRUE)
+dbWriteTable(mydb, "ms1_stapletypemeasure", ms1_stapletypemeasure, overwrite=TRUE)
+dbWriteTable(mydb, "ms1_vegetabletype", ms1_vegetabletype, overwrite=TRUE)
+dbWriteTable(mydb, "ms1_vegetablemeasure", ms1_vegetablemeasure, overwrite=TRUE)
+dbWriteTable(mydb, "ms1_market_location", ms1_market, overwrite=TRUE)
+
+
+colnames(ms1_master)[1] <- "id"
+dbWriteTable(mydb, "ms1_master", ms1_master, overwrite=TRUE)
+
+colnames(ms1_fruit_sub_roster)[1] <- "id"
+dbWriteTable(mydb, "ms1_fruit_sub_roster", ms1_fruit_sub_roster, overwrite=TRUE)
+
+colnames(ms1_staple_sub_roster)[1] <- "id"
+dbWriteTable(mydb, "ms1_staple_sub_roster", ms1_staple_sub_roster, overwrite=TRUE)
+
+colnames(ms1_vegetable_sub_roster)[1] <- "id"
+dbWriteTable(mydb, "ms1_vegetable_sub_roster", ms1_vegetable_sub_roster, overwrite = TRUE)
+
+ms1_fruit_collection <- dbGetQuery(mydb, "SELECT ms1_fruit_sub_roster.id, 
+                                                 ms1_fruit_sub_roster.interview__id,
+                                                 ms1_master.week,
+                                                 ms1_master.day,
+                                                 ms1_master.month,
+                                                 ms1_master.year,
+                                                 ms1_master.market_location,
+                                                 ms1_market_location.description AS market_location_description,
+                                                 ms1_master.survey_date,
+                                                 ms1_master.farmer_number,
+                                                 ms1_master.supply_location,
+                                                 ms1_fruit_sub_roster.fruits_roster__id,
+                                                 ms1_fruittype.description AS des_type,
+                                                 ms1_fruit_sub_roster.frut_sub_roster__id,
+                                                 ms1_fruitmeasure.description AS measure_type,
+                                                 ms1_fruit_sub_roster.fruit_quantity
+                                   
+                                          FROM ms1_fruit_sub_roster
+                                          INNER JOIN ms1_fruittype ON ms1_fruit_sub_roster.fruits_roster__id = ms1_fruittype.id
+                                          INNER JOIN ms1_fruitmeasure ON ms1_fruit_sub_roster.frut_sub_roster__id = ms1_fruitmeasure.id
+                                          INNER JOIN ms1_master ON ms1_fruit_sub_roster.id = ms1_master.id
+                                          INNER JOIN ms1_market_location ON ms1_fruit_sub_roster.id = ms1_master.id AND ms1_master.market_location = ms1_market_location.id
+                                   ")
+
+dbWriteTable(mydb, "ms1_fruit_collection", ms1_fruit_collection, overwrite = TRUE)
+
+#write.csv(ms1_fruit_collection, "c:/temp/ms1_fruit_collection.csv", row.names = FALSE)
+
+
+ms1_staple_collection <- dbGetQuery(mydb, "SELECT ms1_staple_sub_roster.id,  
+                                                 ms1_staple_sub_roster.interview__id,
+                                                 ms1_master.week,
+                                                 ms1_master.day,
+                                                 ms1_master.month,
+                                                 ms1_master.year,
+                                                 ms1_master.market_location,
+                                                 ms1_market_location.description AS market_location_description,
+                                                 ms1_master.survey_date,
+                                                 ms1_master.farmer_number,
+                                                 ms1_master.supply_location,
+                                                 ms1_staple_sub_roster.staple_roster__id,
+                                                 ms1_stapletype.description AS des_type,
+                                                 ms1_staple_sub_roster.stap_Nest_Roster__id,
+                                                 ms1_stapletypemeasure.descripion AS measure_type,
+                                                 ms1_staple_sub_roster.staple_quantity
+                                   
+                                          FROM ms1_staple_sub_roster
+                                          INNER JOIN ms1_stapletype ON ms1_staple_sub_roster.staple_roster__id = ms1_stapletype.id
+                                          INNER JOIN ms1_stapletypemeasure ON ms1_staple_sub_roster.stap_Nest_Roster__id = ms1_stapletypemeasure.id
+                                          INNER JOIN ms1_master ON ms1_staple_sub_roster.id = ms1_master.id
+                                          INNER JOIN ms1_market_location ON ms1_staple_sub_roster.id = ms1_master.id AND ms1_master.market_location = ms1_market_location.id
+                                   ")
+
+dbWriteTable(mydb, "ms1_staple_collection", ms1_staple_collection, overwrite = TRUE)
+
+#write.csv(ms1_staple_collection, "c:/temp/ms1_staple_collection.csv", row.names = FALSE)
+
+
+ms1_vegetable_collection <- dbGetQuery(mydb, "SELECT ms1_vegetable_sub_roster.id,  
+                                                 ms1_vegetable_sub_roster.interview__id,
+                                                 ms1_master.week,
+                                                 ms1_master.day,
+                                                 ms1_master.month,
+                                                 ms1_master.year,
+                                                 ms1_master.market_location,
+                                                 ms1_market_location.description AS market_location_description,
+                                                 ms1_master.survey_date,
+                                                 ms1_master.farmer_number,
+                                                 ms1_master.supply_location,
+                                                 ms1_vegetable_sub_roster.vegetable_roster__id,
+                                                 ms1_vegetabletype.description AS des_type,
+                                                 ms1_vegetable_sub_roster.veg_sub_roster__id,
+                                                 ms1_vegetablemeasure.description AS measure_type,
+                                                 ms1_vegetable_sub_roster.vegetable_quantity
+                                   
+                                          FROM ms1_vegetable_sub_roster
+                                          INNER JOIN ms1_vegetabletype ON ms1_vegetable_sub_roster.vegetable_roster__id = ms1_vegetabletype.id
+                                          INNER JOIN ms1_vegetablemeasure ON ms1_vegetable_sub_roster.veg_sub_roster__id = ms1_vegetablemeasure.id
+                                          INNER JOIN ms1_master ON ms1_vegetable_sub_roster.id = ms1_master.id
+                                          INNER JOIN ms1_market_location ON ms1_vegetable_sub_roster.id = ms1_master.id AND ms1_master.market_location = ms1_market_location.id
+                                   ")
+
+dbWriteTable(mydb, "ms1_vegetable_collection", ms1_vegetable_collection, overwrite = TRUE)
+#write.csv(ms1_vegetable_collection, "c:/temp/ms1_vegetable_collection.csv", row.names = FALSE)
+
+summary <- dbGetQuery(mydb, "SELECT day, week, month, year, market_location_description, des_type, measure_type, fruit_quantity FROM ms1_fruit_collection
+                             GROUP BY day, week, month, year, market_location, des_type, measure_type")
+
+#Disconnect from the SQLite database
+dbDisconnect(mydb)
+
 
 

@@ -5,6 +5,7 @@ label variable interview__key `"Interview key (identifier in XX-XX-XX-XX format)
 label variable interview__id `"Unique 32-character long identifier of the interview"'
 label variable roster `"Name of the roster containing the variable"'
 capture label variable id1 `"Roster ID of the 1st level of nesting"'
+capture label variable id2 `"Roster ID of the 2nd level of nesting"'
 label variable variable `"Variable name for the commented question"'
 label variable order `"Sequential order of the comment"'
 label variable date `"Date when the comment was left"'

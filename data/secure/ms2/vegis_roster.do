@@ -1,38 +1,20 @@
 clear
 insheet using "vegis_roster.tab", tab case names
 
+label define vegis_roster__id 1 `"Bowl Cabbage (White)"' 2 `"Bowl Cabbage (Purple)"' 3 `"Carrot"' 4 `"Chinese Cabbage"' 5 `"Cucumber"' 6 `"Pumpkin"' 7 `"Island Cabbage"' 8 `"Lettuce"' 9 `"Tomato (Big Type)"' 10 `"Tomato (Small Type)"' 11 `"Potato"' 12 `"Onion"' 13 `"Capsicum"' 14 `"Bean"' 15 `"Chilli"' 16 `"Sweet Corn"' 17 `"Broccoli"' 
+label values vegis_roster__id vegis_roster__id
 label variable vegis_roster__id `"Id in vegis_roster"'
 
 label variable interview__key `"Interview key (identifier in XX-XX-XX-XX format)"'
 
-label define vegetable_code 1 `"Bowl Cabbage (white)"' 2 `"Bowl Cabbage (purple)"' 3 `"Chiness Cabbage"' 4 `"Cuccumber"' 5 `"Pumpkin"' 6 `"Island Cabbage"' 7 `"Lettuce"' 8 `"Tomatoes"' 9 `"Dried Coconut"' 10 `"Green Coconut"' 
+label define vegetable_code 1 `"Bowl Cabbage (white)"' 2 `"Bowl Cabbage (purple)"' 3 `"Carrot"' 4 `"Chinese Cabbage"' 5 `"Cucumber"' 6 `"Pumpkin"' 7 `"Island Cabbage"' 8 `"Lettuce"' 9 `"Tomatoes"' 10 `"Potato"' 11 `"Onion"' 12 `"Capsicum"' 13 `"Bean"' 14 `"Chilli"' 15 `"Sweet Corn"' 16 `"Broccoli"' 
 label values vegetable_code vegetable_code
 label variable vegetable_code `"vegetable_code"'
 
-label define veg_measure_type 1 `"Basket"' 2 `"Net"' 3 `"Each"' 4 `"Bundle"' 
-label values veg_measure_type veg_measure_type
-label variable veg_measure_type `"veg_measure_type"'
+label variable veg_measure_type__2 `"veg_measure_type:Net"'
 
-label variable vegetable_price1 `"vegetable_price1"'
+label variable veg_measure_type__3 `"veg_measure_type:Each"'
 
-label variable vegetables_weight1 `"vegetables_weight1"'
-
-label variable vegetable_price2 `"vegetable_price2"'
-
-label variable vegetables_weight2 `"vegetables_weight2"'
-
-label variable vegetable_price3 `"vegetable_price3"'
-
-label variable vegetables_weight3 `"vegetables_weight3"'
-
-label variable vegetable_price4 `"vegetable_price4"'
-
-label variable vegetables_weight4 `"vegetables_weight4"'
-
-label variable vegetable_price5 `"vegetable_price5"'
-
-label variable vegetables_weight5 `"vegetables_weight5"'
-
-label variable vegetable_type `"Roster list question"'
+label variable veg_measure_type__4 `"veg_measure_type:Bundle"'
 
 label variable interview__id `"Unique 32-character long identifier of the interview"'
