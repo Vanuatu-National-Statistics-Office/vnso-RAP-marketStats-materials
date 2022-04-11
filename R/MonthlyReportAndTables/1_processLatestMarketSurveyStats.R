@@ -201,12 +201,6 @@ ms2_vegetable_food_collection <- dbGetQuery(mydb, "SELECT * FROM ms2_vegetable_c
 ms2_fruit_food_collection <- dbGetQuery(mydb, "SELECT * FROM ms2_fruits_collection")
 
 
-#Write all extracted ms2 collections to CSV files
-write.csv(ms2_staple_collection, "data/secure/ms2/ms2_staple_collection.csv", row.names = FALSE)
-write.csv(ms2_vegetable_collection, "data/secure/ms2/ms2_vegetable_collection.csv", row.names = FALSE)
-write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", row.names = FALSE)
-
-
 #### Calculations - MS2 ####
 
 #sumFiji_Taro <- ms2_staple_collection %>% group_by(rootcrop_desc) %>% count(id)
@@ -388,3 +382,7 @@ ms2_staple_totals$price_per_kilo <- ms2_staple_totals$price/ms2_staple_totals$we
 ms2_staple_totals
 
 
+#Write all extracted ms2 collections to CSV files
+write.csv(ms2_staple_collection, "data/secure/ms2/ms2_staple_collection.csv", row.names = FALSE)
+write.csv(ms2_vegetable_collection, "data/secure/ms2/ms2_vegetable_collection.csv", row.names = FALSE)
+write.csv(ms2_fruits_collection, "data/secure/ms2/ms2_fruits_collection.csv", row.names = FALSE)
