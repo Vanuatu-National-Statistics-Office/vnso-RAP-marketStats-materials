@@ -1,0 +1,26 @@
+"id","week","year","market_desc","survey_date","root_crop_roster__id","rootcrop_desc","rootcropmeasure_desc","staple_wieght1","staple_price1","staple_wieght2","staple_price2","staple_wieght3","staple_price3","staple_wieght4","staple_price4","staple_wieght5","staple_price5"
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",1,"Fiji Taro","Basket",6.2,600,6.3,600,6.31,600,6.36,600,7.3,600
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",2,"Island Taro","Bundle",8.31,600,8.41,600,8.56,600,8.61,600,8.63,600
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",2,"Island Taro","Each",2.39,500,1.97,500,2.36,500,2.33,500,1.97,500
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",3,"Manioc","Basket",10.81,500,10.8,500,10.86,500,7.89,500,7.82,500
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",4,"Sweet Potato (Kumala)","Basket",8.26,500,8.28,500,8.3,500,8.23,500,8.31,500
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",5,"Yam","Basket",15.63,2500,16.11,2500,17.12,2500,-999999999,-999999999,-999999999,-999999999
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",6,"Banana - green (Big Type)","Bunch",7.44,500,8.1,600,7.48,500,7.68,500,5.29,300
+"01-62-89-89",1,2022,"Port Vila Municipal Market","2022-01-20T15:01:58",8,"Dry Coconut","Bundle",5.6,250,5.58,250,5.56,250,5.61,250,5.58,250
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",1,"Fiji Taro","Basket",8.41,700,9.46,700,8.56,700,9.31,700,9.35,700
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",2,"Island Taro","Bundle",5.25,700,5.64,700,5.56,700,5.54,700,5.64,700
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",3,"Manioc","Basket",10.38,500,9.42,500,9.58,500,10.25,500,10.39,500
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",4,"Sweet Potato (Kumala)","Basket",6.14,500,6.46,500,6.35,500,6.47,500,6.43,500
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",5,"Yam","Basket",10.44,2000,7.28,1000,7.3,1000,10.5,2000,10.46,2000
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",6,"Banana - green (Big Type)","Bunch",7.08,500,6.91,500,9.85,1000,7.1,500,8.21,700
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",6,"Banana - green (Big Type)","Ring/Tier",2.54,200,2.85,200,2.65,200,2.63,200,2.82,200
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",7,"Banana - green (Small type)","Bunch",7.28,400,8.15,500,7.26,400,7.3,400,8.12,500
+"48-26-47-90",1,2021,"Port Vila Municipal Market","2022-01-20T16:14:57",8,"Dry Coconut","Bundle",5.52,300,5.5,300,5.61,300,5.18,300,5.2,300
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",1,"Fiji Taro","Basket",6.66,500,6.42,500,5.71,500,6.56,500,6.82,500
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",2,"Island Taro","Bundle",4.71,500,4.23,500,4.41,500,6.31,500,6.37,500
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",3,"Manioc","Basket",6.21,500,6.56,400,5.37,300,5.21,300,5.26,300
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",4,"Sweet Potato (Kumala)","Basket",4.68,500,4.11,500,4.57,500,4.34,500,4.51,500
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",5,"Yam","Basket",9.1,1000,4.69,600,8.57,800,8.57,700,9.21,1000
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",6,"Banana - green (Big Type)","Bundle",4.71,300,6.21,500,6.11,500,6.25,500,6.45,500
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",7,"Banana - green (Small type)","Bundle",4.21,200,4.51,200,4.57,200,5.61,300,5.52,300
+"83-79-20-78",2,2022,"Luganville Municipal Market","2022-01-28T08:36:35",8,"Dry Coconut","Bundle",4.67,100,4.62,100,4.44,100,4.67,100,4.52,100
