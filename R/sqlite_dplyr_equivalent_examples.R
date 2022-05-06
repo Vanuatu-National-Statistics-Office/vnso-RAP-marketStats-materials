@@ -55,10 +55,14 @@ subsetting_columns <- dbGetQuery(con, "SELECT
 # Writing the whole mtcars into database
 dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
 
-# Fetch the mtcars data where cylinder field equals 4
-filtering <- dbSendQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
-dbFetch(filtering)
+# Fetch all of the table
+all_mtcars <- dbGetQuery(con, "SELECT * FROM mtcars")
+# For illustration, this includes all `cyl` values:
+head(all_mtcars)
 
+# Subsetting - fetch the mtcars data where cylinder field equals 4
+filtering <- dbGetQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
+head(filtering)
 
 # Group by cars to get the average weight of car models, total number of gears, and the count of cars being used in calcs
 grouping <- dbGetQuery(con, "SELECT substr(trim(row_names),1,instr(trim(row_names)||' ',' ')-1) AS car,
@@ -67,5 +71,5 @@ grouping <- dbGetQuery(con, "SELECT substr(trim(row_names),1,instr(trim(row_name
                              SUM(gear) AS gears
                              FROM mtcars
                              GROUP BY car")
-
+head(grouping)
 
