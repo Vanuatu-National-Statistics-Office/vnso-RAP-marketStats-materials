@@ -1,44 +1,74 @@
+# Illustrative SQL code to demonstrate some simple data manipulation
 # Code taken and adapted from: https://db.rstudio.com/databases/sqlite/
 
+#### Preparation ####
+
+# loading required libraries
 library(DBI) #  handling databases
 library(RSQLite) # working with sqllite: install.packages("RSQLite")
 library(dplyr) # for creating dataframes
 
-# converting rownames to column to include car model in database
-mtcars <- sqlRownamesToColumn(mtcars)
+# loadinfg mtcars example dataframe
+data(mtcars)
+
+# adding row names as column to include car model in database
+mtcars$car_model <- rownames(mtcars)
 
 # creating two dataframes to demonstrate joining dateframes further down
 df_mtcars_one <- mtcars %>%
-  select(row_names, mpg, cyl, disp, hp, drat)
+  select(car_model, mpg, cyl, disp, hp, drat)
 
 df_mtcars_two <- mtcars %>%
-  select(row_names, wt, qsec, vs, am, gear, carb)
+  select(car_model, wt, qsec, vs, am, gear, carb)
 
+#### Store data in local sqlite database ####
 
-## start of RSQL code
+# creating an temporary in-memory RSQLite database
+connection <- dbConnect(RSQLite::SQLite(), ":memory:")
 
-# Create an ephemeral in-memory RSQLite database
-con <- dbConnect(RSQLite::SQLite(), ":memory:")
+# listing the tables in the database - none at this point
+dbListTables(connection)
 
-# List the tables in the database - none at this point
-dbListTables(con)
+# writing the 1st example mtcars dataframe to the SQLite database
+dbWriteTable(connection, "df_mtcars_one", df_mtcars_one)
 
-# Write the 1st example mtcars dataframe to the SQLite database
-dbWriteTable(con, "df_mtcars_one", df_mtcars_one)
+# viewing the tables - should now include mtcars
+dbListTables(connection)
 
-# View the tables - should now include mtcars
-dbListTables(con)
+# viewing the fields within a table on SQLite database
+dbListFields(connection, "df_mtcars_one")
 
-# View the fields within a table on SQLite database
-dbListFields(con, "df_mtcars_one")
+# writing the 2nd example mtcars dataframe to the SQLite database
+dbWriteTable(connection, "df_mtcars_two", df_mtcars_two)
 
-# Write the 2nd example mtcars dataframe to the SQLite database
-dbWriteTable(con, "df_mtcars_two", df_mtcars_two)
+# writing the whole mtcars into database
+dbWriteTable(connection, "mtcars", mtcars, overwrite = TRUE)
 
+#### Simple SQL based data manipulation ####
 
-## subsetting columns and joining two dataframes
-subsetting_columns <- dbGetQuery(con, "SELECT
-                                 df_mtcars_one.row_names,
+# text processing: reformat car_model column to extract car brand
+#      SUBSTR(string, start, n_char): returns subset of string based on start index and number characters
+#      TRIM(string): removes spaces from string by default
+#      INSTR(ori_str, sub_str): notes position of sub_str within ori_str
+dbExecute(connection, "ALTER TABLE mtcars ADD COLUMN car TEXT")
+dbExecute(connection, "UPDATE mtcars SET car = SUBSTR(TRIM(car_model), 1, INSTR(TRIM(car_model)||' ', ' ')-1)")
+head(dbReadTable(connection, "mtcars"))
+
+# filtering: fetch the mtcars data where cylinder field equals 4
+filtering <- dbGetQuery(connection, "SELECT * FROM mtcars WHERE cyl = 4")
+head(filtering)
+
+# grouping: group by cars to get the average weight of car models and the count of cars being used in calcs
+grouping <- dbGetQuery(connection, "SELECT car,
+                             AVG(wt) AS weight,
+                             COUNT(car_model) AS number
+                             FROM mtcars
+                             GROUP BY car")
+head(grouping)
+
+# subsetting columns and joining two dataframes
+subsetting_columns <- dbGetQuery(connection, "SELECT
+                                 df_mtcars_one.car_model,
                                  df_mtcars_one.mpg,
                                  df_mtcars_one.cyl,
                                  
@@ -49,27 +79,6 @@ subsetting_columns <- dbGetQuery(con, "SELECT
                                  FROM df_mtcars_one
                                  JOIN df_mtcars_two
                                  
-                                 ON df_mtcars_two.row_names = df_mtcars_one.row_names")
-
-
-# Writing the whole mtcars into database
-dbWriteTable(con, "mtcars", mtcars, overwrite = TRUE)
-
-# Fetch all of the table
-all_mtcars <- dbGetQuery(con, "SELECT * FROM mtcars")
-# For illustration, this includes all `cyl` values:
-head(all_mtcars)
-
-# Subsetting - fetch the mtcars data where cylinder field equals 4
-filtering <- dbGetQuery(con, "SELECT * FROM mtcars WHERE cyl = 4")
-head(filtering)
-
-# Group by cars to get the average weight of car models, total number of gears, and the count of cars being used in calcs
-grouping <- dbGetQuery(con, "SELECT substr(trim(row_names),1,instr(trim(row_names)||' ',' ')-1) AS car,
-                             AVG(wt) AS weight,
-                             COUNT(row_names) AS number,
-                             SUM(gear) AS gears
-                             FROM mtcars
-                             GROUP BY car")
-head(grouping)
+                                 ON df_mtcars_two.car_model = df_mtcars_one.car_model")
+head(subsetting_columns)
 
