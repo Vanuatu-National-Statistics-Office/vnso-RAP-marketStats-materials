@@ -46,6 +46,14 @@ dbWriteTable(connection, "mtcars", mtcars, overwrite = TRUE)
 
 #### Simple SQL based data manipulation ####
 
+# subsetting: select subset of columns
+subset <- dbGetQuery(connection, "SELECT car_model, mpg FROM mtcars")
+head(subset)
+
+# filtering: fetch the mtcars data where cylinder field equals 4
+filtering <- dbGetQuery(connection, "SELECT * FROM mtcars WHERE cyl = 4")
+head(filtering)
+
 # text processing: reformat car_model column to extract car brand
 #      SUBSTR(string, start, n_char): returns subset of string based on start index and number characters
 #      TRIM(string): removes spaces from string by default
@@ -53,10 +61,6 @@ dbWriteTable(connection, "mtcars", mtcars, overwrite = TRUE)
 dbExecute(connection, "ALTER TABLE mtcars ADD COLUMN car TEXT")
 dbExecute(connection, "UPDATE mtcars SET car = SUBSTR(TRIM(car_model), 1, INSTR(TRIM(car_model)||' ', ' ')-1)")
 head(dbReadTable(connection, "mtcars"))
-
-# filtering: fetch the mtcars data where cylinder field equals 4
-filtering <- dbGetQuery(connection, "SELECT * FROM mtcars WHERE cyl = 4")
-head(filtering)
 
 # grouping: group by cars to get the average weight of car models and the count of cars being used in calcs
 grouping <- dbGetQuery(connection, "SELECT car,
@@ -66,13 +70,30 @@ grouping <- dbGetQuery(connection, "SELECT car,
                              GROUP BY car")
 head(grouping)
 
-# subsetting columns and joining two dataframes
-subsetting_columns <- dbGetQuery(connection, "SELECT
+# joining - joining to tables in database
+joined <- dbGetQuery(connection, "SELECT *
+                                 
+                                 FROM df_mtcars_one
+                                 JOIN df_mtcars_two
+                                 
+                                 ON df_mtcars_two.car_model = df_mtcars_one.car_model")
+head(joined)
+
+# stacked - subseting, filtering, and grouping
+filtered_grouped_subset <- dbGetQuery(connection, "SELECT gear,
+                                 AVG(mpg), 
+                                 SUM(wt), 
+                                 AVG(disp)
+                                 FROM mtcars WHERE wt > 2 AND wt < 5
+                                 GROUP BY gear")
+head(filtered_grouped_subset)
+
+# stacked - subsetting and joining
+joined_subset <- dbGetQuery(connection, "SELECT
                                  df_mtcars_one.car_model,
                                  df_mtcars_one.mpg,
                                  df_mtcars_one.cyl,
                                  
-       
                                  df_mtcars_two.wt,
                                  df_mtcars_two.gear
                                  
@@ -80,5 +101,4 @@ subsetting_columns <- dbGetQuery(connection, "SELECT
                                  JOIN df_mtcars_two
                                  
                                  ON df_mtcars_two.car_model = df_mtcars_one.car_model")
-head(subsetting_columns)
-
+head(joined_subset)
