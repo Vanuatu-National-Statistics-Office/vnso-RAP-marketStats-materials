@@ -9,7 +9,7 @@
 install.packages("devtools")
 devtools::install_github("arthur-shaw/susoapi")
 
-library(susoapi)
+library(susoapi) # load survey solutions R package for connecting to API
 
 # You will need to set up values securely holding the address for the server, and the username and password.
 # It is very important to NOT include these explicitly in any R scripts as these would then become
@@ -18,6 +18,10 @@ library(susoapi)
 # as "environment variables" on your local machine. They can then be recalled by an R script by using 
 # the Sys.getenv() function. In the example below, we load the environment variables `SUSO_SERVER`, 
 # `SUSO_USER` and `SUSO_PASSWORD`.
+# For instructions for creating environmental variables, see:
+# - windows: https://kb.wisc.edu/cae/page.php?id=24500
+# - mac: https://medium.com/@himanshuagarwal1395/setting-up-environment-variables-in-macos-sierra-f5978369b255
+# - linux: https://askubuntu.com/questions/58814/how-do-i-add-environment-variables
 
 suso_server <- Sys.getenv("SUSO_SERVER")
 suso_user <- Sys.getenv("SUSO_USER")
@@ -29,6 +33,7 @@ suso_server
 suso_user
 suso_password
 
+# Set credentials for survey solutions API
 set_credentials(
   server = suso_server,
   user = suso_user,
@@ -52,7 +57,7 @@ check_credentials()
 # Set the name of the table to download.
 # We don't know what this should be as it depends on the naming in the VNSO server, so this would need to be 
 # changed as appropriate.
-tab_name <- "NAME OF THE TABLE TO DOWNLOAD" 
+table_name <- "NAME OF THE TABLE TO DOWNLOAD" 
 
 # It might be that
 get_questionnaires()
@@ -62,16 +67,16 @@ get_questionnaires()
 # Note you have to make sure you specify the "export type" to whatever data type you want - "Tabular" should 
 #  generate tab-delimited text. More info on the Reference page for start_export:
 # https://arthur-shaw.github.io/susoapi/reference/start_export.html
-start_export(
-  qnr_id = tab_name,
+export_job_id <- start_export(
+  qnr_id = table_name,
   export_type = "Tabular",
   interview_status = "All"
-) -> export_job_id
+)
 
 # Once this is ready, you should be able to do download the exported data:
 get_export_file(
     job_id = export_job_id,
-    path = "C:/your/file/path/"
+    path = "C:/your/file/path/" # Note this is the path on your computer where the data will be saved
 )
 # Note you want to change the folder above to whereever you want to store the downloaded data.
 
