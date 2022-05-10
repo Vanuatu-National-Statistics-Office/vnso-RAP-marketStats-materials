@@ -68,7 +68,7 @@ grouped <- dbGetQuery(connection, "SELECT car,
                              COUNT(car_model) AS number
                              FROM mtcars
                              GROUP BY car")
-head(grouped)
+head(grouped,10)
 
 # joining - joining to tables in database
 joined <- dbGetQuery(connection, "SELECT *
