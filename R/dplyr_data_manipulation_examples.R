@@ -27,6 +27,8 @@ df_mtcars_two <- mtcars %>%
 ls()
 
 #### Simple SQL based data manipulation ####
+#### This mirrors the operations in `sqlite_data_manipulation_examples.R`
+#### from line 50
 
 # subsetting: select subset of columns
 subset <- mtcars %>% select(car_model, mpg)
@@ -41,13 +43,8 @@ head(filtered)
 #      substr(string, start, end): removes spaces from string by default
 mtcars <- mtcars %>%
   mutate(
-    index_of_space = regexpr(" ", car_model),
-    car = substr(car_model, 1, 
-                      ifelse(index_of_space < 0, 
-                             nchar(car_model), 
-                             index_of_space - 1))
-  ) %>%
-  select(-index_of_space)
+    car = sub(" .*", "", car_model)) 
+  )
 head(mtcars)
 
 # grouping: group by cars to get the average weight of car models and the count of cars being used in calcs
