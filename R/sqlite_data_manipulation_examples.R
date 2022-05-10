@@ -8,7 +8,7 @@ library(DBI) #  handling databases
 library(RSQLite) # working with sqllite: install.packages("RSQLite")
 library(dplyr) # for creating dataframes
 
-# loadinfg mtcars example dataframe
+# loading mtcars example dataframe
 data(mtcars)
 
 # adding row names as column to include car model in database
@@ -51,8 +51,8 @@ subset <- dbGetQuery(connection, "SELECT car_model, mpg FROM mtcars")
 head(subset)
 
 # filtering: fetch the mtcars data where cylinder field equals 4
-filtering <- dbGetQuery(connection, "SELECT * FROM mtcars WHERE cyl = 4")
-head(filtering)
+filtered <- dbGetQuery(connection, "SELECT * FROM mtcars WHERE cyl = 4")
+head(filtered)
 
 # text processing: reformat car_model column to extract car brand
 #      SUBSTR(string, start, n_char): returns subset of string based on start index and number characters
@@ -63,12 +63,12 @@ dbExecute(connection, "UPDATE mtcars SET car = SUBSTR(TRIM(car_model), 1, INSTR(
 head(dbReadTable(connection, "mtcars"))
 
 # grouping: group by cars to get the average weight of car models and the count of cars being used in calcs
-grouping <- dbGetQuery(connection, "SELECT car,
+grouped <- dbGetQuery(connection, "SELECT car,
                              AVG(wt) AS weight,
                              COUNT(car_model) AS number
                              FROM mtcars
                              GROUP BY car")
-head(grouping)
+head(grouped)
 
 # joining - joining to tables in database
 joined <- dbGetQuery(connection, "SELECT *
