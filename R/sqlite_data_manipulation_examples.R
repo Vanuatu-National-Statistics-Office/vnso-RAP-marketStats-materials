@@ -58,8 +58,10 @@ head(filtered)
 #      SUBSTR(string, start, n_char): returns subset of string based on start index and number characters
 #      TRIM(string): removes spaces from string by default
 #      INSTR(ori_str, sub_str): notes position of sub_str within ori_str
+# source: https://stackoverflow.com/questions/9471576/extract-first-word-in-a-sqlite3-database
 dbExecute(connection, "ALTER TABLE mtcars ADD COLUMN car TEXT")
 dbExecute(connection, "UPDATE mtcars SET car = SUBSTR(TRIM(car_model), 1, INSTR(TRIM(car_model)||' ', ' ')-1)")
+dbExecute(connection, "UPDATE mtcars SET car = REPLACE(car_model, ' .*', '')")
 head(dbReadTable(connection, "mtcars"))
 
 # grouping: group by cars to get the average weight of car models and the count of cars being used in calcs
