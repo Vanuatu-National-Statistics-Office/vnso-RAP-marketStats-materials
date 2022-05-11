@@ -43,8 +43,7 @@ head(filtered)
 #      substr(string, start, end): removes spaces from string by default
 mtcars <- mtcars %>%
   mutate(
-    car = sub(" .*", "", car_model)) 
-  )
+    car = sub(" .*", "", car_model))
 head(mtcars)
 
 # grouping: group by cars to get the average weight of car models and the count of cars being used in calcs
