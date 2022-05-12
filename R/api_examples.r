@@ -78,7 +78,6 @@ get_export_file(
     job_id = export_job_id,
     path = "C:/your/file/path/" # Note this is the path on your computer where the data will be saved
 )
-# Note you want to change the folder above to whereever you want to store the downloaded data.
 
 # The following steps would then depend on the exact format of the downloaded data, but it may be best to 
 #  trial/test the above steps first.

@@ -26,9 +26,9 @@ df_mtcars_two <- mtcars %>%
 # List all variables currently stored in R environment
 ls()
 
-#### Simple SQL based data manipulation ####
-#### This mirrors the operations in `sqlite_data_manipulation_examples.R`
-#### from line 50
+#### Simple dplyr based data manipulation ####
+# Note that this mirrors the operations in `sqlite_data_manipulation_examples.R`
+# from line 50
 
 # subsetting: select subset of columns
 subset <- mtcars %>% select(car_model, mpg)
