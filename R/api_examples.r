@@ -52,11 +52,6 @@ suso_getSV(workspace = workspace)
 # NOTE functions below aren't working with the with test server
 
 # Example export call:
-suso_export(server = server_name, apiUser = server_user, apiPass = server_password, 
-            workspace = "jan22", questID = table_name)
-
-suso_getSV(workspace = "jan22")
-
 suso_getQuestDetails(
   server = server_name,
   usr = server_user,
@@ -72,3 +67,5 @@ suso_getWorkspace(
   workspace = "jan22"
 )
 
+suso_export(server = server_name, apiUser = server_user, apiPass = server_password, 
+            workspace = "jan22", questID = table_name)
