@@ -9,7 +9,8 @@
 # - https://docs.mysurvey.solutions/headquarters/api/api-r-package/
 # - swagger api: https://demo.mysurvey.solutions/jan22/apidocs/index.html#/
 
-# Demo server and credentials???
+# Demo survey URL and info - as used for username and passwords below.
+# https://docs.mysurvey.solutions/headquarters/config/demo-server/
 
 ### `SurveySolutionsAPI` example code
 
