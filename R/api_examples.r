@@ -12,6 +12,13 @@
 # Demo survey URL and info - as used for username and passwords below.
 # https://docs.mysurvey.solutions/headquarters/config/demo-server/
 
+# Creating environmental variables is required for storing your Survey Solutions credentials (line 31 onwards)
+# See useful guidance on how to create these variables
+# - https://stackoverflow.com/questions/49738564/r-set-environment-variable-permanently
+# - https://stat.ethz.ch/R-manual/R-devel/library/base/html/Sys.setenv.html
+# NOTE it isn't advisable to store any SurveySolutions API credentials in this or any R scripts
+# in case you accidentally share through or git or other means.
+
 ### `SurveySolutionsAPI` example code
 
 # Make sure package is installed (from Github)
