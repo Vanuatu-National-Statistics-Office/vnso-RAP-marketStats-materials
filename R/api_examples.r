@@ -19,6 +19,10 @@
 # NOTE it isn't advisable to store any SurveySolutions API credentials in this or any R scripts
 # in case you accidentally share through or git or other means.
 
+# The SurveySolutionsAPI was built by this person - https://github.com/michael-cw who has examples of incorporating
+# the api into shiny app workflows. There is a lot of authentication into the app at the beginning but you should
+# eventually be able to recognise the package workflow and see if anything can be amended for your own use.
+
 ### `SurveySolutionsAPI` example code
 
 # Make sure package is installed (from Github)
