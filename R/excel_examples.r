@@ -1,15 +1,19 @@
+###### Reading Excel data
 
+### Packages
 
 # install packages
 install.packages("readxl")
 install.packages("purrr")
-
+install.packages("openxlsx")
 
 # load packages
-library(readxl) #read in Excel files - begins line 37
+library(readxl) #read in Excel files - begins line 41
 library(purrr)  #reading in excel worksheets
-library(openxlsx) #read in excel files - begins line 91
+library(openxlsx) #read in excel files - begins line 88
+# writing Excel files begins line 106
 
+### Folders and loading data
 
 #Mapping of the directory path
 
@@ -35,20 +39,17 @@ ms1_fruittypeFile <- file.path(openDataFolder, "MS1_Classification.xlsx")
 finalWorkbookFileName <- file.path(outputFolder, "SEC_FINAL_MAN_FinalMarketSurveyStatisticsTables_31-12-21_WORKING.xlsx")
 
 
-## readxl package
+### Examples reading data using readxl package
 
 # readxl cheatsheet - https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf
 # readxl guide - https://readxl.tidyverse.org/
 
-
-## Importing spreadsheets
+### Importing spreadsheets
 
 # list all the sheet names 
 excel_sheets(ms1_fruittypeFile)
 
-
 # two ways to read in excel sheets - individually
-
 ms1_fruittype <- read_excel(ms1_fruittypeFile, 
                             sheet = "fruit_type" #not including this line will upload the first sheet only
                             )
@@ -64,12 +65,10 @@ ms1_fruit <- ms1_fruittypeFile %>%
 # if you want to bring up the info on the sheets just imported
 View(ms1_fruit)
 
-
 # to call the fruit_measure sheet
 ms1_fruit$fruit_measure
 
-# Importing spreadsheets by column/row
-
+### Importing spreadsheets by column/row
 
 # listing all the sheet names
 excel_sheets(finalWorkbookFileName)
@@ -87,11 +86,9 @@ final_stats_table_quantity <- read_excel(finalWorkbookFileName,
 View(final_stats_table_quantity)
 
 
-
-## openxlsx package
+### Examples reading data using openxlsx package
 
 # openxlsx guide - https://www.rdocumentation.org/packages/openxlsx/versions/4.2.5/topics/read.xlsx
-# 
 
 # can use to load workbook and either use as file path or check worksheet names
 wb <- loadWorkbook(finalWorkbookFileName)
@@ -106,7 +103,7 @@ df1 <- read.xlsx(finalWorkbookFileName, #filepath to import
 
 
 
-# writing excel sheets
+###### Writing Excel data
 
 # Using 'openxlsx' library for XLSX writing functionality
 install.packages("openxlsx")
@@ -162,7 +159,6 @@ writeDataTable(wb, sheet = "MoreStaples",
 # Save the workbook again:
 # (best to close Excel and reopen while you're doing this)
 saveWorkbook(wb, "outputs/openxlsx_demo1.xlsx", overwrite = TRUE) 
-
 
 ### Editing data in single cells & merging cells:
 
