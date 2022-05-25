@@ -1,6 +1,6 @@
 ###### Reading Excel data
 
-### Packages
+#### Packages ####
 
 # install packages
 install.packages("readxl")
@@ -8,38 +8,35 @@ install.packages("purrr")
 install.packages("openxlsx")
 
 # load packages
-library(readxl) #read in Excel files - begins line 41
-library(purrr)  #reading in excel worksheets
-library(openxlsx) #read in excel files - begins line 88
-# writing Excel files begins line 106
+library(readxl) #read in xxcel files - begins line 41
+library(purrr)  # improving code efficiency - here used to load all sheets from excel
+library(openxlsx) #read in excel files - begins line 89; writing Excel files begins line 107
 
-### Folders and loading data
+#### Folders and loading data ####
 
 #Mapping of the directory path
 
 # Note where VNSO code/data is on current computer
-repository <- getwd()
-setwd(repository) # Required for file.choose() function
+current_script_folder <- dirname(rstudioapi::getSourceEditorContext()$path)
+repository <- file.path(current_script_folder, "..")
+setwd(repository) 
 
 ## setting folder paths
 
-# Note the secure data path
-secureDataFolder <- file.path(repository, "data", "secure")
 # Note the open data path
-openDataFolder <- file.path(repository, "data", "open")
+open_data_folder <- file.path(repository, "data", "open")
+
 # Note the output folder path
-outputFolder <- file.path(repository, "outputs")
-# Note the secure data path
-ms1DataFolder <- file.path(repository, "data", "secure", "ms1")
+output_folder <- file.path(repository, "outputs")
 
 # open fruit classification excel sheet
-ms1_fruittypeFile <- file.path(openDataFolder, "MS1_Classification.xlsx")
+ms1_fruit_type_file_path <- file.path(open_data_folder, "MS1_Classification.xlsx")
 
 # secure final output sheet - that is slightly more complex structure
-finalWorkbookFileName <- file.path(outputFolder, "SEC_FINAL_MAN_FinalMarketSurveyStatisticsTables_31-12-21_WORKING.xlsx")
+final_workbook_file_path <- file.path(output_folder, "SEC_FINAL_MAN_FinalMarketSurveyStatisticsTables_31-12-21_WORKING.xlsx")
 
 
-### Examples reading data using readxl package
+#### Examples reading data using readxl package ####
 
 # readxl cheatsheet - https://github.com/rstudio/cheatsheets/blob/main/data-import.pdf
 # readxl guide - https://readxl.tidyverse.org/
@@ -47,20 +44,21 @@ finalWorkbookFileName <- file.path(outputFolder, "SEC_FINAL_MAN_FinalMarketSurve
 ### Importing spreadsheets
 
 # list all the sheet names 
-excel_sheets(ms1_fruittypeFile)
+excel_sheets(ms1_fruit_type_file_path)
 
 # two ways to read in excel sheets - individually
-ms1_fruittype <- read_excel(ms1_fruittypeFile, 
-                            sheet = "fruit_type" #not including this line will upload the first sheet only
-                            )
+ms1_fruit_type <- read_excel(
+  ms1_fruit_type_file_path, 
+  sheet = "fruit_type" #not including this line will read the first sheet by default
+)
 
 
 # second way involves reading in all sheets at once 
 # the sheet names are set by what is in the excel spreadsheet - check using excel_sheets() as above
-ms1_fruit <- ms1_fruittypeFile %>%
+ms1_fruit <- ms1_fruit_type_file_path %>%
   excel_sheets() %>%
   set_names() %>%
-  map(read_excel, path = ms1_fruittypeFile)
+  map(read_excel, path = ms1_fruit_type_file_path)
 
 # if you want to bring up the info on the sheets just imported
 View(ms1_fruit)
@@ -71,13 +69,15 @@ ms1_fruit$fruit_measure
 ### Importing spreadsheets by column/row
 
 # listing all the sheet names
-excel_sheets(finalWorkbookFileName)
+excel_sheets(final_workbook_file_path)
 
 # reading in the second sheet ""1_QuantitySupplied-Q" and setting the range to remove the first two rows
 # note that I kept the empty rows that separate out the different types - the data layout doesn't lend itself to 
 # data manipulation in R
-final_stats_table_quantity <- read_excel(finalWorkbookFileName, 
-                                         range = "1_QuantitySupplied-Q!A3:X29") #where !A3:X29 refers to the excel cells
+final_stats_table_quantity <- read_excel(
+  final_workbook_file_path, 
+  range = "1_QuantitySupplied-Q!A3:X29" #where !A3:X29 refers to the excel cells
+) 
 
 # you can also set just columns or rows when importing the excel spreadsheets with
 # cell_cols("B:D") or cell_rows (1:4)
@@ -86,28 +86,25 @@ final_stats_table_quantity <- read_excel(finalWorkbookFileName,
 View(final_stats_table_quantity)
 
 
-### Examples reading data using openxlsx package
+#### Examples reading data using openxlsx package ####
 
 # openxlsx guide - https://www.rdocumentation.org/packages/openxlsx/versions/4.2.5/topics/read.xlsx
 
 # can use to load workbook and either use as file path or check worksheet names
-wb <- loadWorkbook(finalWorkbookFileName)
+workbook <- loadWorkbook(final_workbook_file_path)
 
-# building dataframe using openxlsx
-df1 <- read.xlsx(finalWorkbookFileName, #filepath to import
-                 sheet = 2, # which sheet to import
-                 cols = c(1:24), # which columns to import cols = NULL to import all
-                 rows = c(3:25), # which rows to import. rows = NULL to import all
-                 skipEmptyRows = TRUE # don't bring in empty rows
-                 )
+# reading data from excel using openxlsx
+quantity_supplied <- read.xlsx(
+  final_workbook_file_path, #filepath to import
+  sheet = 2, # which sheet to import can be specified by name of index
+  cols = c(1:24), # which columns to import cols = NULL to import all
+  rows = c(3:25), # which rows to import. rows = NULL to import all
+  skipEmptyRows = TRUE # don't bring in empty rows
+)
 
 
 
-###### Writing Excel data
-
-# Using 'openxlsx' library for XLSX writing functionality
-install.packages("openxlsx")
-library(openxlsx)
+#### writing data to excel ####
 
 # Here are a couple of examples setting out the use of openxlsx.
 # The package has a lot of functionality to control exact formatting (colours, fonts, etc.)
@@ -115,14 +112,15 @@ library(openxlsx)
 # https://cran.r-project.org/web/packages/openxlsx/vignettes/Formatting.html
 
 # Just for illustration purposes, we use ms2_staple_collection.csv:
-staples <- read.csv("data/open/ms2/ms2_staple_collection.csv")
+staple_collection_file <- file.path(open_data_folder, "ms2", "ms2_staple_collection.csv")
+staples <- read.csv(staple_collection_file)
 
 # To write to an Excel file and use separate sheets, we first set up a
 # new Excel workbook object to write to:
 
-wb <- createWorkbook()
+workbook <- createWorkbook()
 # Adding a new sheet to this workbook:
-addWorksheet(wb, sheetName = "Staples1")
+addWorksheet(workbook, sheetName = "Staples1")
 
 ### Simple writing of a new spreadsheet
 
@@ -130,56 +128,69 @@ addWorksheet(wb, sheetName = "Staples1")
 # Note setting tableStyle to "none" and withFilter to FALSE ensures fully plain formatting.
 # More details on this (and options) are in the help file for the function:
 # https://www.rdocumentation.org/packages/openxlsx/versions/4.2.5/topics/writeDataTable
-writeDataTable(wb, sheet = "Staples1", 
-                   x = staples, 
-                   tableStyle = "none",
-                   withFilter = FALSE)
+writeDataTable(
+  workbook, sheet = "Staples1",
+  x = staples, 
+  tableStyle = "none",
+  withFilter = FALSE
+)
 
 # To save the file, we then use saveWorkbook()
-saveWorkbook(wb, "outputs/openxlsx_demo1.xlsx", overwrite = TRUE) 
+output_file_path <- file.path(output_folder, "openxlsx_demo1.xlsx")
+saveWorkbook(workbook, output_file_path, overwrite = TRUE) 
 
 
 ### Adding a second sheet and writing to a specific position:
 
 # Another example, adding a further sheet:
-addWorksheet(wb, sheetName = "MoreStaples")
+addWorksheet(workbook, sheetName = "MoreStaples")
 
 # Write the same table into this sheet but now starting at a given row and column:
 
 # First set some better column names so we don't have to deal with that in Excel:
 colnames(staples) <- c("Type", "Week 1", "Week 2") 
 # Write data to new sheet:
-writeDataTable(wb, sheet = "MoreStaples", 
-                   x = staples, 
-                   startCol = 2, 
-                   startRow = 3,
-                   tableStyle = "none",
-                   withFilter = FALSE)
+writeDataTable(
+  workbook, 
+  sheet = "MoreStaples", 
+  x = staples, 
+  startCol = 2,
+  startRow = 3,
+  tableStyle = "none",
+  withFilter = FALSE
+)
 
 # Save the workbook again:
 # (best to close Excel and reopen while you're doing this)
-saveWorkbook(wb, "outputs/openxlsx_demo1.xlsx", overwrite = TRUE) 
+output_file_path <- file.path(output_folder, "openxlsx_demo1.xlsx")
+saveWorkbook(workbook, output_file_path, overwrite = TRUE) 
 
 ### Editing data in single cells & merging cells:
 
 # Replace the value in col 3, row 2 of sheet MoreStaples with "January":
-writeData(wb, sheet = "MoreStaples", 
-                   x = "January", 
-                   startCol = 3, 
-                   startRow = 2)
-saveWorkbook(wb, "outputs/openxlsx_demo1.xlsx", overwrite = TRUE) 
+writeData(
+  workbook, sheet = "MoreStaples", 
+  x = "January", 
+  startCol = 3, 
+  startRow = 2
+)
+saveWorkbook(workbook, output_file_path, overwrite = TRUE) 
 
 # merging cells - so that "January" spans both columns:
-mergeCells(wb, sheet = "MoreStaples",
-               cols = 3:4, rows = 2)
-saveWorkbook(wb, "outputs/openxlsx_demo1.xlsx", overwrite = TRUE) 
+mergeCells(
+  workbook, sheet = "MoreStaples",
+  cols = 3:4, rows = 2
+)
+saveWorkbook(workbook, output_file_path, overwrite = TRUE) 
 
 # Replacing a range of values.
 # Note that when given a vector (1,2,3,4) this writes by column (vertically) from a given starting position.
 # Also note we use xy instead of startCol and startRow here:
-writeData(wb, sheet = "MoreStaples", 
-                   x = c(1,2,3,4), 
-                   xy = c(4,4))
-saveWorkbook(wb, "outputs/openxlsx_demo1.xlsx", overwrite = TRUE) 
+writeData(
+  workbook, sheet = "MoreStaples", 
+  x = c(1,2,3,4), 
+  xy = c(4,4)
+)
+saveWorkbook(workbook, output_file_path, overwrite = TRUE) 
 
 
