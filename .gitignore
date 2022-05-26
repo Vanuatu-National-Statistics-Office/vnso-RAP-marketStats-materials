@@ -20,6 +20,9 @@
 # RStudio files
 .Rproj.user/
 
+# VSCode files
+.vscode/
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
@@ -61,3 +64,7 @@ outputs/*
 # Ignore temporal files produced by excel
 data/open/$*
 outputs/$*
+
+# Ignore Mac files
+.DS_Store
+
