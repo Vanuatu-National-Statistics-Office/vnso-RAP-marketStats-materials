@@ -11,6 +11,13 @@ library(tidyverse)
 library(RSQLite) #R SQLite driver package
 library(DBI) #Database driver package
 library(lubridate) #Data manipulation
+library(pivottabler)
+library(openxlsx)
+library(kableExtra)
+library(ggplot2)
+library(plotly)
+library(tidyr)
+
 
 #Mapping of the directory path
 setwd(paste0(getwd()))
@@ -19,13 +26,196 @@ getwd()
 #Establish connection the the SQLite database
 mydb <- dbConnect(RSQLite::SQLite(), "data/secure/sqlite/ms.sqlite")
 
+source(file.path("R/functions.R"))
+
 #Import and prepare base weight table to be applied to MS1 collection
 class_wgt <- read.csv("data/open/OPN_FINAL_VNSO_WeightingClassifications_10-04-22.csv")
 dbWriteTable(mydb, "class_wgt", class_wgt, overwrite = TRUE)
 class_wgt_app <- dbGetQuery(mydb, "SELECT Major, (Produce||'-'||Unit) AS produce, Weight FROM class_wgt")
-
 dbWriteTable(mydb, "class_wgt_app", class_wgt_app, overwrite = TRUE)
 
+#IMport Month table
+
+mymonth <- read.csv("data/open/months.csv")
+dbWriteTable(mydb, "mymonth", mymonth, overwrite = TRUE)
+
+
+#****************************************************Historical Data Retrieval ************************************************
+
+QuantitySupplied_W <- read.xlsx(xlsxFile = "data/secure/marketsurvey_historical data.xlsx", sheet = "QuantitySupplied_W" )
+AveragePricePerKilo_W <- read.xlsx(xlsxFile = "data/secure/marketsurvey_historical data.xlsx", sheet = "AveragePricePerKilo_W" )
+ValueOfSupplies_W <- read.xlsx(xlsxFile = "data/secure/marketsurvey_historical data.xlsx", sheet = "ValueOfSupplies_W" )
+VolumeIndex_W <- read.xlsx(xlsxFile = "data/secure/marketsurvey_historical data.xlsx", sheet = "VolumeIndex_W" )
+PriceIndex_w <- read.xlsx(xlsxFile = "data/secure/marketsurvey_historical data.xlsx", sheet = "PriceIndex_w" )
+NumberSellers_W <- read.xlsx(xlsxFile = "data/secure/marketsurvey_historical data.xlsx", sheet = "NumberSellers_W" )
+
+dbWriteTable(mydb, "QuantitySupplied_W", QuantitySupplied_W, overwrite = TRUE)
+dbWriteTable(mydb, "AveragePricePerKilo_W", AveragePricePerKilo_W, overwrite = TRUE)
+dbWriteTable(mydb, "ValueOfSupplies_W", ValueOfSupplies_W, overwrite = TRUE)
+dbWriteTable(mydb, "VolumeIndex_W", VolumeIndex_W, overwrite = TRUE)
+dbWriteTable(mydb, "PriceIndex_w", PriceIndex_w, overwrite = TRUE)
+dbWriteTable(mydb, "NumberSellers_W", NumberSellers_W, overwrite = TRUE)
+
+#Staple Food Trend comparisons
+histQtySupplied_staple <- dbGetQuery(mydb, "SELECT (Year||'-'||Quarter) AS myquarter, 
+                                            Category, 
+                                            Major, 
+                                            ROUND(SUM(Totalweight_kg)) AS totalWeight
+                                     FROM QuantitySupplied_W
+                                     WHERE category = 'Staple'
+                                     GROUP BY myquarter, Category, Major
+                              ")
+
+staple_history <- histQtySupplied_staple %>%
+  pivot_wider(names_from = Major, values_from = totalWeight)
+
+staple_history %>%
+  plot_ly(x = ~myquarter,
+          y = ~Banana_green,
+          color = "blue",
+          type = "scatter",
+          mode = "lines+markers",
+          name = "Green Banana",
+          line = list(width = 4)
+          ) %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~FijiTaro,
+            color = "red",
+            name = "Fiji Taro") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~IslandTaro,
+            color = "green",
+            name = "Island Taro") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Manioc,
+            color = "yellow",
+            name = "Manioc") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Dried_coconuts,
+            color = "orange",
+            name = "Dried Coconut") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Yams,
+            color = "violet",
+            name = "Yam") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~SweetPotato_kumala,
+            color = "indigo",
+            name = "Sweet Potato (Kumala)") %>%  
+  
+  plotly::layout(xaxis = list(title = "Quarter"), yaxis = list(title = 'Value (Kilogram))'))
+
+
+#Vegetable Food Trend comparisons
+histQtySupplied_vegetable <- dbGetQuery(mydb, "SELECT (Year||'-'||Quarter) AS myquarter, 
+                                            Category, 
+                                            Major, 
+                                            ROUND(SUM(Totalweight_kg)) AS totalWeight
+                                     FROM QuantitySupplied_W
+                                     WHERE category = 'Vegetable'
+                                     GROUP BY myquarter, Category, Major
+                              ")
+
+vegetable_history <- histQtySupplied_vegetable %>%
+  pivot_wider(names_from = Major, values_from = totalWeight)
+
+vegetable_history %>%
+  plot_ly(x = ~myquarter,
+          y = ~BowlCabbage_purple,
+          color = "blue",
+          type = "scatter",
+          mode = "lines+markers",
+          name = "Purple Bowl Cabbage",
+          line = list(width = 4)) %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~BowlCabbage_white,
+            color = "red",
+            name = "White Bowl Cabbage") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Carrot,
+            color = "green",
+            name = "Carrot") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~ChineseCabbage,
+            color = "yellow",
+            name = "Chinese Cabbage") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Cucumbers,
+            color = "orange",
+            name = "Cucumber") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~IslandCabbage,
+            color = "violet",
+            name = "Island Cabbage") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Lettuce,
+            color = "indigo",
+            name = "Lettuce") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Pumpkin,
+            color = "pink",
+            name = "Lettuce") %>%  
+  
+  add_trace(x = ~myquarter,
+            y = ~Tomatoes,
+            color = "black",
+            name = "Lettuce") %>%  
+  
+  plotly::layout(xaxis = list(title = "Quarter"), yaxis = list(title = 'Value (Kilogram))'))
+
+
+#Fruits Trend comparisons
+histQtySupplied_Fruits <- dbGetQuery(mydb, "SELECT (Year||'-'||Quarter) AS myquarter, 
+                                            Category, 
+                                            Major, 
+                                            ROUND(SUM(Totalweight_kg)) AS totalWeight
+                                     FROM QuantitySupplied_W
+                                     WHERE category = 'Fruits'
+                                     GROUP BY myquarter, Category, Major
+                              ")
+
+
+fruit_history <- histQtySupplied_Fruits %>%
+  pivot_wider(names_from = Major, values_from = totalWeight)
+
+fruit_history %>%
+  plot_ly(x = ~myquarter,
+          y = ~Banana_Ripe,
+          color = "blue",
+          type = "scatter",
+          mode = "lines+markers",
+          name = "Ripe Banana",
+          line = list(width = 4)) %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Green_coconut,
+            color = "red",
+            name = "Green Coconut") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Pawpaw,
+            color = "green",
+            name = "Pawpaw") %>%
+  
+  add_trace(x = ~myquarter,
+            y = ~Watermelon,
+            color = "yellow",
+            name = "Watermelon") %>%
+  
+  plotly::layout(xaxis = list(title = "Quarter"), yaxis = list(title = 'Value (Kilogram))'))
 
 #*************************************************** MS2 Processing ***********************************************************
 
@@ -147,36 +337,46 @@ ms2_staple_collection$sMonth <- format(ms2_staple_collection$sdate, format= "%B"
 dbWriteTable(mydb, "ms2_staple_collection", ms2_staple_collection, overwrite = TRUE)
 
 #Extract ms1_staple_collection from sqlite database for tabulation by computing the period of collection
-ms2_staple_composition <- dbGetQuery(mydb, "SELECT (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
-                                                  rootcrop_desc,
+ms2_staple_composition <- dbGetQuery(mydb, "SELECT sMonth, sYear, (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
+                                                   (sYear||'-'||mymonth.quartername) AS quarter,
+                                                  rootcrop_desc AS crop,
                                                   (rootcrop_desc||'-'||rootcropmeasure_desc) AS produce, 
                                                   SUM(staple_wieght1+staple_wieght2+staple_wieght3+staple_wieght4+staple_wieght5) AS totalWeight,
                                                   SUM(staple_price1+staple_price2+staple_price3+staple_price4+staple_price5) AS totalPrice
                                            FROM ms2_staple_collection
-                                           GROUP BY period, produce")
+                                           INNER JOIN mymonth ON ms2_staple_collection.sMonth = mymonth.monthname
+                                           GROUP BY sMonth, sYear, period, produce, quarter, crop")
 
 dbWriteTable(mydb, "ms2_staple_composition", ms2_staple_composition, overwrite = TRUE)
 
 
 #Generate a table by linking staple food with classification to collect major groupings
-ms2_staple_composition_mjr <- dbGetQuery(mydb, "SELECT ms2_staple_composition.period, 
-                                                       ms2_staple_composition.rootcrop_desc,
+ms2_staple_composition_mjr <- dbGetQuery(mydb, "SELECT ms2_staple_composition.sMonth,
+                                                       ms2_staple_composition.sYear,
+                                                       ms2_staple_composition.period, 
+                                                       ms2_staple_composition.quarter,
+                                                       ms2_staple_composition.crop,
+                                                       ms2_staple_composition.produce,
+                                                       class_wgt_app.Major,
                                                        SUM(ms2_staple_composition.totalWeight) AS tWeight,
                                                        SUM(ms2_staple_composition.totalprice) AS tPrice
                                                        
                                                 FROM ms2_staple_composition
-                                                GROUP BY ms2_staple_composition.period, ms2_staple_composition.rootcrop_desc
+                                                INNER JOIN class_wgt_app ON ms2_staple_composition.produce = class_wgt_app.produce
+                                                GROUP BY  ms2_staple_composition.sMonth,
+                                                          ms2_staple_composition.sYear,
+                                                          ms2_staple_composition.period,
+                                                          ms2_staple_composition.quarter,      
+                                                          ms2_staple_composition.crop,
+                                                          ms2_staple_composition.produce, 
+                                                          class_wgt_app.Major
                                          ")
+
 
 #Claculate average price per kilo for each staple food category
 ms2_staple_composition_mjr$avgPricePerKilo <- ms2_staple_composition_mjr$tPrice / ms2_staple_composition_mjr$tWeight
-
-#Produce ms2 staple pivot table
-ms2_staple_pivot <- ms2_staple_composition_mjr %>%
-  pivot_wider(names_from = period, rootcrop_desc, values_from = avgPricePerKilo, values_fill = 0) %>%
-  ungroup()
-  
-write.csv(ms2_staple_pivot, "data/open/ms2/ms2_staple_collection.csv", row.names = FALSE)
+#colnames(ms2_staple_composition_mjr)[3] <- "category"
+ms2_staple_composition_mjr$group <- "STAPLE"
 
 
 #Extract MS2 vegetable records from the SQLite database
@@ -216,37 +416,49 @@ ms2_vegetable_collection$sMonth <- format(ms2_vegetable_collection$sdate, format
 dbWriteTable(mydb, "ms2_vegetable_collection", ms2_vegetable_collection, overwrite = TRUE)
 
 #Extract ms1_vegetable_collection from sqlite database for tabulation by computing the period of collection
-ms2_vegetable_composition <- dbGetQuery(mydb, "SELECT (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
-                                                  vegetabletype_desc,
+ms2_vegetable_composition <- dbGetQuery(mydb, "SELECT sMonth, sYear, (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
+                                                      (sYear||'-'||mymonth.quartername) AS quarter,
+                                                  vegetabletype_desc AS crop,
                                                   (vegetabletype_desc||'-'||vegetablemeasure_desc) AS produce, 
                                                   SUM(vegetables_weight1+vegetables_weight2+vegetables_weight3+vegetables_weight4+vegetables_weight5) AS totalWeight,
                                                   SUM(vegetable_price1+vegetable_price2+vegetable_price3+vegetable_price4+vegetable_price5) AS totalPrice
                                            FROM ms2_vegetable_collection
-                                           GROUP BY period, produce")
+                                           INNER JOIN mymonth ON ms2_vegetable_collection.sMonth = mymonth.monthname
+                                           GROUP BY sMonth, sYear, period, produce, quarter, crop")
 
 dbWriteTable(mydb, "ms2_vegetable_composition", ms2_vegetable_composition, overwrite = TRUE)
 
 
 #Generate a table by linking vegetable food with classification to collect major groupings
-ms2_vegetable_composition_mjr <- dbGetQuery(mydb, "SELECT ms2_vegetable_composition.period, 
-                                                       ms2_vegetable_composition.vegetabletype_desc, 
+ms2_vegetable_composition_mjr <- dbGetQuery(mydb, "SELECT ms2_vegetable_composition.sMonth,
+                                                          ms2_vegetable_composition.sYear,
+                                                          ms2_vegetable_composition.period, 
+                                                          ms2_vegetable_composition.quarter,
+                                                          ms2_vegetable_composition.crop,
+                                                          ms2_vegetable_composition.produce,
+                                                          class_wgt_app.Major,
+                                                      				 
                                                        SUM(ms2_vegetable_composition.totalWeight) AS tWeight,
                                                        SUM(ms2_vegetable_composition.totalprice) AS tPrice
                                                        
                                                 FROM ms2_vegetable_composition
-                                                GROUP BY ms2_vegetable_composition.period, ms2_vegetable_composition.vegetabletype_desc
+                                                INNER JOIN class_wgt_app ON ms2_vegetable_composition.produce = class_wgt_app.produce
+                                                GROUP BY ms2_vegetable_composition.sMonth,
+                                                         ms2_vegetable_composition.sYear,
+                                                         ms2_vegetable_composition.period, 
+                                                         ms2_vegetable_composition.crop,
+                                                         ms2_vegetable_composition.quarter,
+                                                         ms2_vegetable_composition.produce,
+                                                         class_wgt_app.Major 
+                  
                                          ")
+
+
 
 #Claculate average price per kilo for each vegetable food category
 ms2_vegetable_composition_mjr$avgPricePerKilo <- ms2_vegetable_composition_mjr$tPrice / ms2_vegetable_composition_mjr$tWeight
-
-#Produce ms2 vegetable pivot table
-ms2_vegetable_pivot <- ms2_vegetable_composition_mjr %>%
-  pivot_wider(names_from = period, vegetabletype_desc, values_from = avgPricePerKilo, values_fill = 0) %>%
-  ungroup()
-
-
-write.csv(ms2_vegetable_pivot, "data/open/ms2/ms2_vegetable_collection.csv", row.names = FALSE)
+#colnames(ms2_vegetable_composition_mjr)[3] <- "category"
+ms2_vegetable_composition_mjr$group <- "VEGETABLE"
 
 
 #Extract MS2 fruit records from the SQLite database
@@ -286,37 +498,91 @@ ms2_fruits_collection$sMonth <- format(ms2_fruits_collection$sdate, format= "%B"
 dbWriteTable(mydb, "ms2_fruits_collection", ms2_fruits_collection, overwrite = TRUE)
 
 #Extract ms1_vegetable_collection from sqlite database for tabulation by computing the period of collection
-ms2_fruits_composition <- dbGetQuery(mydb, "SELECT (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
-                                                  fruit_type_desc,
+ms2_fruits_composition <- dbGetQuery(mydb, "SELECT sMonth, sYear, (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
+                                                   (sYear||'-'||mymonth.quartername) AS quarter,
+                                                  fruit_type_desc AS crop,
                                                   (fruit_type_desc||'-'||measurement_fruits_desc) AS produce, 
                                                   SUM(fruit_weight1+fruit_weight2+fruit_weight3+fruit_weight4+fruit_weight5) AS totalWeight,
                                                   SUM(fruit_price1+fruit_price2+fruit_price3+fruit_price4+fruit_price5) AS totalPrice
                                            FROM ms2_fruits_collection
-                                           GROUP BY period, produce")
+                                           INNER JOIN mymonth ON ms2_fruits_collection.sMonth = mymonth.monthname
+                                           GROUP BY sMonth, sYear,period, produce, quarter, crop")
 
 dbWriteTable(mydb, "ms2_fruits_composition", ms2_fruits_composition, overwrite = TRUE)
 
 
 #Generate a table by linking vegetable food with classification to collect major groupings
-ms2_fruits_composition_mjr <- dbGetQuery(mydb, "SELECT ms2_fruits_composition.period, 
-                                                       fruit_type_desc, 
+ms2_fruits_composition_mjr <- dbGetQuery(mydb, "SELECT ms2_fruits_composition.sMonth,
+                                                       ms2_fruits_composition.sYear,
+                                                       ms2_fruits_composition.period,
+                                                       ms2_fruits_composition.quarter,
+                                                       ms2_fruits_composition.crop,
+                                                       ms2_fruits_composition.produce,
+                                                       class_wgt_app.Major,
                                                        SUM(ms2_fruits_composition.totalWeight) AS tWeight,
                                                        SUM(ms2_fruits_composition.totalprice) AS tPrice
                                                        
                                                 FROM ms2_fruits_composition
-                                                GROUP BY ms2_fruits_composition.period, ms2_fruits_composition.fruit_type_desc
+                                                INNER JOIN class_wgt_app ON ms2_fruits_composition.produce = class_wgt_app.produce
+                                                GROUP BY ms2_fruits_composition.sMonth,
+                                                         ms2_fruits_composition.sYear,
+                                                         ms2_fruits_composition.period, 
+                                                         ms2_fruits_composition.quarter,
+                                                         ms2_fruits_composition.crop, 
+                                                         ms2_fruits_composition.produce,
+                                                         class_wgt_app.Major
                                          ")
+
 
 #Claculate average price per kilo for each vegetable food category
 ms2_fruits_composition_mjr$avgPricePerKilo <- ms2_fruits_composition_mjr$tPrice / ms2_fruits_composition_mjr$tWeight
+#colnames(ms2_fruits_composition_mjr)[3] <- "category"
+ms2_fruits_composition_mjr$group <- "FRUIT"
 
-#Produce ms2 vegetable pivot table
-ms2_fruits_pivot <- ms2_fruits_composition_mjr %>%
-  pivot_wider(names_from = period, fruit_type_desc, values_from = avgPricePerKilo, values_fill = 0) %>%
-  ungroup()
+#Combine all crop categories together in one table and remove NA
+ms2_combine <- rbind(ms2_fruits_composition_mjr, ms2_staple_composition_mjr, ms2_vegetable_composition_mjr)
+
+ms2_combine_final <- ms2_combine
+
+dbWriteTable(mydb, "ms2_combine_final", ms2_combine_final, overwrite = TRUE)
+
+#Produce MS2 weekly collection report
+ms2_weekly <- PivotTable$new()
+ms2_weekly$addData(ms2_combine_final)
+ms2_weekly$addColumnDataGroups("period")
+ms2_weekly$addRowDataGroups("group")
+ms2_weekly$addRowDataGroups("Major")
+ms2_weekly$defineCalculation(calculationName="avgPricePerKilo", summariseExpression = "mean(avgPricePerKilo)")
+ms2_weekly$renderPivot()
+ms2_weekly$evaluatePivot()
+
+#Write combine MS2 records to Excel
+wb <- createWorkbook(creator = Sys.getenv("rsoro"))
+addWorksheet(wb, "Weekly")
+ms2_weekly$writeToExcelWorksheet(wb=wb, wsName="Weekly", 
+                         topRowNumber=1, leftMostColumnNumber=1, applyStyles=FALSE)
+saveWorkbook(wb, file="data\\open\\output\\ms2\\ms2_table1_weekly.xlsx", overwrite = TRUE)
 
 
-write.csv(ms2_fruits_pivot, "data/open/ms2/ms2_fruits_collection.csv", row.names = FALSE)
+#Produce MS2 weekly collection report
+ms2_quarterly <- PivotTable$new()
+ms2_quarterly$addData(ms2_combine_final)
+ms2_quarterly$addColumnDataGroups("quarter")
+ms2_quarterly$addRowDataGroups("group")
+ms2_quarterly$addRowDataGroups("Major")
+ms2_quarterly$defineCalculation(calculationName="avgPricePerKilo", summariseExpression = "mean(avgPricePerKilo)")
+ms2_quarterly$renderPivot()
+ms2_quarterly$evaluatePivot()
+
+
+#Write combine MS2 quarterly records to Excel
+wb <- createWorkbook(creator = Sys.getenv("rsoro"))
+addWorksheet(wb, "quarterly")
+ms2_quarterly$writeToExcelWorksheet(wb=wb, wsName="quarterly", 
+                                 topRowNumber=1, leftMostColumnNumber=1, applyStyles=FALSE)
+saveWorkbook(wb, file="data\\open\\output\\ms2\\ms2_table1_quarterly.xlsx", overwrite = TRUE)
+
+
 
 
 
@@ -406,11 +672,14 @@ ms1_fruit_collection$sMonth <- format(ms1_fruit_collection$sdate, format= "%B")
 dbWriteTable(mydb, "ms1_fruit_collection", ms1_fruit_collection, overwrite = TRUE)
 
 #Extract ms1_staple_collection from sqlite database for tabulation
-ms1_fruit_composition <- dbGetQuery(mydb, "SELECT (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
-                                                  (des_type||'-'||measure_type) AS produce, 
+ms1_fruit_composition <- dbGetQuery(mydb, "SELECT sMonth, sYear, (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
+                                                  (des_type||'-'||measure_type) AS produce,
+                                                  (sYear||'-'||mymonth.quartername) AS quarter,
+                                                  COUNT(id) AS numSeller,
                                                   SUM(fruit_quantity) AS mycount 
-                                           FROM ms1_fruit_collection 
-                                           GROUP BY period, produce")
+                                           FROM ms1_fruit_collection
+                                           INNER JOIN mymonth ON ms1_fruit_collection.Smonth = mymonth.monthname
+                                           GROUP BY sMonth, sYear, period, quartername, produce")
 
 
 ms1_fruit_composition_wgt <- merge(ms1_fruit_composition, class_wgt_app, by="produce")
@@ -468,11 +737,14 @@ ms1_staple_collection$sMonth <- format(ms1_staple_collection$sdate, format= "%B"
 dbWriteTable(mydb, "ms1_staple_collection", ms1_staple_collection, overwrite = TRUE)
 
 #Extract ms1_staple_collection from sqlite database for tabulation
-ms1_staple_composition <- dbGetQuery(mydb, "SELECT (sYear||'-'||sMonth||'-'||'wk'||week) AS period, 
-                                                  (des_type||'-'||measure_type) AS produce, 
+ms1_staple_composition <- dbGetQuery(mydb, "SELECT sMonth, sYear, (sYear||'-'||sMonth||'-'||'wk'||week) AS period, 
+                                                  (des_type||'-'||measure_type) AS produce,
+                                                  (sYear ||'-'||mymonth.quartername) AS quarter,
+                                                  COUNT(id) AS numSeller,
                                                   SUM(staple_quantity) AS mycount 
-                                           FROM ms1_staple_collection 
-                                           GROUP BY period, produce")
+                                           FROM ms1_staple_collection
+                                           INNER JOIN mymonth ON ms1_staple_collection.Smonth = mymonth.monthname
+                                           GROUP BY sMonth, sYear, period, quarter, produce")
 
 ms1_staple_composition_wgt <- merge(ms1_staple_composition, class_wgt_app, by="produce")
 
@@ -530,11 +802,14 @@ ms1_vegetable_collection$sMonth <- format(ms1_vegetable_collection$sdate, format
 dbWriteTable(mydb, "ms1_vegetable_collection", ms1_vegetable_collection, overwrite = TRUE)
 
 #Extract ms1_vegetable_collection from sqlite database for tabulation
-ms1_vegetable_composition <- dbGetQuery(mydb, "SELECT (sYear||'-'||sMonth||'-'||'wk'||week) AS period, 
-                                                  (des_type||'-'||measure_type) AS produce, 
+ms1_vegetable_composition <- dbGetQuery(mydb, "SELECT sMonth, sYear, (sYear||'-'||sMonth||'-'||'wk'||week) AS period,
+                                                  (sYear ||'-'||mymonth.quartername) AS quarter,
+                                                  (des_type||'-'||measure_type) AS produce,
+                                                  COUNT(id) AS numSeller,
                                                   SUM(vegetable_quantity) AS mycount 
-                                           FROM ms1_vegetable_collection 
-                                           GROUP BY period, produce")
+                                           FROM ms1_vegetable_collection
+                                           INNER JOIN mymonth ON ms1_vegetable_collection.sMonth = mymonth.monthname
+                                           GROUP BY sMonth, sYear, period, quarter, produce")
 
 
 ms1_vegetable_composition_wgt <- merge(ms1_vegetable_composition, class_wgt_app, by="produce")
@@ -557,6 +832,91 @@ ms1_vegetable_pivot <- ms1_vegetable_composition_wgt_pv %>%
 
 
 write.csv(ms1_vegetable_pivot, "data/open/ms1/ms1_vegetable_pivot.csv", row.names = FALSE)
+
+
+ms1_fruit_composition_wgt$category <- "FRUIT"
+ms1_staple_composition_wgt$category <- "STAPLE"
+ms1_vegetable_composition_wgt$category <- "VEGETABLE"
+
+ms1_combine <- rbind(ms1_staple_composition_wgt, ms1_fruit_composition_wgt, ms1_vegetable_composition_wgt)
+
+ms1_combine_final <- ms1_combine %>%
+  filter(period !='NA')
+
+dbWriteTable(mydb, "ms1_combine_final", ms1_combine_final, overwrite = TRUE)
+
+
+#Generate weekly market collection table
+ms1_weekly <- PivotTable$new()
+ms1_weekly$addData(ms1_combine_final)
+ms1_weekly$addColumnDataGroups("period")
+ms1_weekly$addRowDataGroups("category")
+ms1_weekly$addRowDataGroups("Major")
+ms1_weekly$defineCalculation(calculationName="totalWeight", summariseExpression = "sum(totalWeight)")
+ms1_weekly$renderPivot()
+ms1_weekly$evaluatePivot()
+
+
+#Write MS1 weekly combine table to excel
+wb <- createWorkbook(creator = Sys.getenv("rsoro"))
+addWorksheet(wb, "Weekly")
+ms1_weekly$writeToExcelWorksheet(wb=wb, wsName="Weekly", 
+                                 topRowNumber=1, leftMostColumnNumber=1,
+                                 applyStyles=TRUE)
+saveWorkbook(wb, file="data\\open\\output\\ms1\\ms1_table1_weekly.xlsx", overwrite = TRUE)
+
+
+#Generate quarterly market collection table
+
+ms1_quarterly <- PivotTable$new()
+ms1_quarterly$addData(ms1_combine_final)
+ms1_quarterly$addColumnDataGroups("quarter")
+ms1_quarterly$addRowDataGroups("category")
+ms1_quarterly$addRowDataGroups("Major")
+ms1_quarterly$defineCalculation(calculationName="totalWeight", summariseExpression = "sum(totalWeight)")
+ms1_quarterly$renderPivot()
+ms1_quarterly$evaluatePivot()
+
+
+#Write MS1 combine quarterly table to excel
+wb <- createWorkbook(creator = Sys.getenv("rsoro"))
+addWorksheet(wb, "quarterly")
+ms1_quarterly$writeToExcelWorksheet(wb=wb, wsName="quarterly", 
+                                 topRowNumber=1, leftMostColumnNumber=1, 
+                                 applyStyles=TRUE)
+saveWorkbook(wb, file="data\\open\\output\\ms1\\ms1_table1_quarterly.xlsx", overwrite = TRUE)
+
+
+#Producing number of sellers per week
+
+ms1_weekly_sellers <- PivotTable$new()
+ms1_weekly_sellers$addData(ms1_combine_final)
+ms1_weekly_sellers$addColumnDataGroups("period")
+ms1_weekly_sellers$addRowDataGroups("Major")
+ms1_weekly_sellers$defineCalculation(calculationName="numSeller", summariseExpression = "sum(numSeller)")
+ms1_weekly_sellers$renderPivot()
+ms1_weekly_sellers$evaluatePivot()
+
+qpvt(ms1_combine_final, "period", "Major", "sum(numSeller)")
+
+write.csv(ms1_combine_final, "c:/temp/ms1_combine_final.csv", row.names = FALSE)
+write.csv(ms2_combine_final, "c:/temp/ms2_combine_final.csv", row.names = FALSE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Disconnect from the SQLite database
 dbDisconnect(mydb)
