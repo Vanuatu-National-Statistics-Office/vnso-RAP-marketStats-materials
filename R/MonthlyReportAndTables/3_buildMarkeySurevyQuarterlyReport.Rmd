@@ -94,6 +94,7 @@ indicatorsTable <- theme_booktabs(indicatorsTable)
 # Print table
 indicatorsTable
 ```
+# Quarterly Trend analysis for the staple foods (Line graph)
 
 ```{r Staple_food_trends}
 
@@ -154,7 +155,35 @@ staple_history %>%
 
 ```
 
+#Quarterly Trend of staple foods by value (Line Graph)
+```{r}
 
 
+```
+
+
+#Price per kilo of staple foods (Bar chart)
+
+```{r}
+
+
+```
+
+
+#Origan of the staple foods (Map of Vanuatu)
+
+```{r}
+
+
+
+```
+
+
+#Number of Sellers (Infographics)
+
+```{r}
+
+
+```
 
 
