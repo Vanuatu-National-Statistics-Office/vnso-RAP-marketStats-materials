@@ -39,7 +39,8 @@ vignettes/*.pdf
 .Renviron
 
 # Set up ignore for data folder
-data/secure/* 
+data/secure/*
+data/secure/sqlite/*
 !data/secure/README.md 
 
 # Ignore any Rmarkdown outputs
