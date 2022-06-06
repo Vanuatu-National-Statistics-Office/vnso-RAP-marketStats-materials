@@ -28,9 +28,6 @@ library(janitor) # Adding row and column totals
 library(RSQLite)
 library(plotly)
 
-setwd(paste0(getwd()))
-getwd()
-
 #Establish connection the the SQLite database
 mydb <- dbConnect(RSQLite::SQLite(), "../../data/secure/sqlite/ms.sqlite")
 
